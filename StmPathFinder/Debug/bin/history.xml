@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<history>
+   <processor signature="5.2.1 -mcpu=cortex-m4 -mthumb -g -nostartfiles -Map=StmPathFinder.map -O0 --gc-sections -LC:\CooCox\CoIDE\configuration\ProgramData\StmPathFinder -TC:\CooCox\CoIDE\configuration\ProgramData\StmPathFinder/arm-gcc-link.ld -g">
+      <target file="StmPathFinder.elf" lastModified="153d8570b5f">
+         <source file="..\obj\stm32f4xx_syscfg.o" lastModified="153d8570599"/>
+         <source file="..\obj\stm32f4xx_dac.o" lastModified="153d85705ed"/>
+         <source file="..\obj\startup_stm32f4xx.o" lastModified="153d8570624"/>
+         <source file="..\obj\main.o" lastModified="153d8570667"/>
+         <source file="..\obj\stm32f4xx_rcc.o" lastModified="153d85706d4"/>
+         <source file="..\obj\stm32f4xx_adc.o" lastModified="153d857073c"/>
+         <source file="..\obj\stm32f4xx_gpio.o" lastModified="153d857078e"/>
+         <source file="..\obj\system_stm32f4xx.o" lastModified="153d85707d3"/>
+         <source file="..\obj\stm32f4xx_spi.o" lastModified="153d8570835"/>
+         <source file="..\obj\stm32f4xx_exti.o" lastModified="153d8570874"/>
+         <source file="..\obj\misc.o" lastModified="153d85708c7"/>
+         <source file="..\obj\stm32f4xx_tim.o" lastModified="153d8570969"/>
+      </target>
+   </processor>
+</history>
