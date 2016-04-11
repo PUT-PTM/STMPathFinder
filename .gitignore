@@ -4,6 +4,7 @@
 *.obj
 *.elf
 
+
 # Precompiled Headers
 *.gch
 *.pch
@@ -30,3 +31,8 @@
 
 # Debug files
 *.dSYM/
+
+# Android studio files
+.idea/
+.idea
+*.idea
