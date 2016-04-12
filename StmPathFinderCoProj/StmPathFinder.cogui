@@ -11,28 +11,13 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
-<part id="2"/>
-<part id="3"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/main.c" title="main.c" tooltip="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Piotrek/Documents/Github repositories/StmPathFinder/StmPathFinderCoProj/main.c" title="main.c" tooltip="C:/Users/Piotrek/Documents/Github repositories/StmPathFinder/StmPathFinderCoProj/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="113" selectionTopPixel="71"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.c" partName="PtmPathFinder_adc.c" path="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_adc.c" title="PtmPathFinder_adc.c" tooltip="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_adc.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/PtmPathFinder_adc.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="445"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.h" partName="PtmPathFinder_adc.h" path="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/include/PtmPathFinder_adc.h" title="PtmPathFinder_adc.h" tooltip="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/include/PtmPathFinder_adc.h" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/PtmPathFinder_adc.h"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="0" selectionTopPixel="0"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.c" partName="PtmPathFinder_gpio.c" path="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_gpio.c" title="PtmPathFinder_gpio.c" tooltip="C:/Users/Piotrek/Documents/Github repositories/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_gpio.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1383" selectionTopPixel="0"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="366" selectionTopPixel="0"/>
 </editor>
 </editors>
 <views>
@@ -44,7 +29,7 @@
 <element path="/StmPathFinder/syscalls"/>
 </expanded>
 <selection>
-<element path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<element path="/StmPathFinder/main.c"/>
 </selection>
 </viewState>
 </view>
@@ -244,124 +229,52 @@
 <editors>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_adc.c"/>
-<editor factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory" id="org.coocox.builder.ui.editors.ConfigEditor">
-<org.coocox.builder.ui.editors.ConfigEditor/>
-</editor>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_adc.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_adc.h"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.h"/>
 </editors>
-<item historyLabel="PtmPathFinder_adc.c" index="1">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="PtmPathFinder_adc.c" index="1">
-<position/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.h" index="4">
-<position info="not_deleted" x="0" y="0"/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="3">
-<position info="not_deleted" x="1080" y="0"/>
-</item>
-<item historyLabel="Configuration" index="2"/>
-<item historyLabel="PtmPathFinder_gpio.c" index="3">
-<position info="not_deleted" x="1080" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="PtmPathFinder_adc.c" index="1">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="405" y="0"/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
-<position info="not_deleted" x="2884" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="405" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="444" y="0"/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
-<position info="not_deleted" x="377" y="424"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="320" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="361" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="241" y="0"/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
-<position info="not_deleted" x="3757" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
-<position/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="480" y="0"/>
-</item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="3757" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="480" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position/>
 </item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="480" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="2636" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
 <position/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="1895" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="113" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="997" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
 <position/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="808" y="14"/>
 </item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="319" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="1217" y="15"/>
 </item>
 <item historyLabel="main.c" index="0">
@@ -370,7 +283,7 @@
 <item historyLabel="main.c" index="0">
 <position/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="385" y="0"/>
 </item>
 <item historyLabel="main.c" index="0">
@@ -382,10 +295,10 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="509" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.c" index="5">
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
 <position info="not_deleted" x="385" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_gpio.h" index="6">
+<item historyLabel="PtmPathFinder_gpio.h" index="3">
 <position info="not_deleted" x="0" y="0"/>
 </item>
 <item historyLabel="PtmPathFinder_adc.c" index="1">
@@ -394,14 +307,86 @@
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="509" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_adc.c" index="7">
+<item historyLabel="PtmPathFinder_adc.c" index="4">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item historyLabel="PtmPathFinder_adc.h" index="8">
+<item historyLabel="PtmPathFinder_adc.h" index="5">
 <position info="not_deleted" x="0" y="0"/>
 </item>
-<item active="true" historyLabel="PtmPathFinder_gpio.c" index="9">
+<item historyLabel="PtmPathFinder_gpio.c" index="6">
 <position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="113" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position/>
+</item>
+<item historyLabel="main.c" index="7">
+<position/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="767" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="1683" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="212" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="1571" y="15"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="385" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="2318" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="121" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="2318" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="385" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="2087" y="0"/>
+</item>
+<item historyLabel="main.c" index="7">
+<position info="not_deleted" x="366" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="239" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="976" y="25"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="1566" y="26"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="2084" y="23"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="227" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="8">
+<position info="not_deleted" x="2043" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.h" index="9">
+<position info="not_deleted" x="239" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="7">
+<position info="not_deleted" x="366" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -410,14 +395,42 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.c" tooltip="StmPathFinder/PtmPathFinder_gpio.c">
-<persistable path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.h" tooltip="StmPathFinder/PtmPathFinder_gpio.h">
+<persistable path="/StmPathFinder/PtmPathFinder_gpio.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.c" tooltip="StmPathFinder/PtmPathFinder_adc.c">
+<persistable path="/StmPathFinder/PtmPathFinder_adc.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.h" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.h">
+<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.c">
+<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Test/main.c">
+<persistable path="/Test/main.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_pwm.h" tooltip="StmPathFinder/PtmPathFinder_pwm.h">
+<persistable path="/StmPathFinder/PtmPathFinder_pwm.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_pwm.c" tooltip="StmPathFinder/PtmPathFinder_pwm.c">
+<persistable path="/StmPathFinder/PtmPathFinder_pwm.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.h" tooltip="StmPathFinder/PtmPathFinder_adc.h">
 <persistable path="/StmPathFinder/PtmPathFinder_adc.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.c" tooltip="StmPathFinder/PtmPathFinder_adc.c">
-<persistable path="/StmPathFinder/PtmPathFinder_adc.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.c" tooltip="StmPathFinder/PtmPathFinder_gpio.c">
+<persistable path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="StmPathFinder/main.c">
+<persistable path="/StmPathFinder/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_syscfg.h" tooltip="StmPathFinder/cmsis_lib/include/stm32f4xx_syscfg.h">
+<persistable path="/StmPathFinder/cmsis_lib/include/stm32f4xx_syscfg.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="PTM/main.c">
 <persistable path="/PTM/main.c"/>
@@ -425,35 +438,8 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_dac.c" tooltip="PTM/cmsis_lib/source/stm32f4xx_dac.c">
 <persistable path="/PTM/cmsis_lib/source/stm32f4xx_dac.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.h" tooltip="StmPathFinder/PtmPathFinder_gpio.h">
-<persistable path="/StmPathFinder/PtmPathFinder_gpio.h"/>
-</file>
 <file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="math.h" tooltip="C:\Program Files (x86)\GNU Tools ARM Embedded\5.2 2015q4\arm-none-eabi\include\math.h">
 <persistable path="C:\Program Files (x86)\GNU Tools ARM Embedded\5.2 2015q4\arm-none-eabi\include\math.h" project="StmPathFinder"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_adc.c" tooltip="StmPathFinder/cmsis_lib/source/stm32f4xx_adc.c">
-<persistable path="/StmPathFinder/cmsis_lib/source/stm32f4xx_adc.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stdafx.h" tooltip="StmPathFinder/stdafx.h">
-<persistable path="/StmPathFinder/stdafx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="StmPathFinder/main.c">
-<persistable path="/StmPathFinder/main.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.c" tooltip="StmPathFinder/cmsis_lib/source/stm32f4xx_gpio.c">
-<persistable path="/StmPathFinder/cmsis_lib/source/stm32f4xx_gpio.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_rcc.c" tooltip="StmPathFinder/cmsis_lib/source/stm32f4xx_rcc.c">
-<persistable path="/StmPathFinder/cmsis_lib/source/stm32f4xx_rcc.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="PTM/cmsis_boot/stm32f4xx.h">
-<persistable path="/PTM/cmsis_boot/stm32f4xx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.c"/>
 </file>
 </mruList>
 </workbench>

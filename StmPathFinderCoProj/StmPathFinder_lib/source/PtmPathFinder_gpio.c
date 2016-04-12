@@ -56,16 +56,31 @@ void LeftEngineInit(void)
  */
 void RightEngineInit(void)
 {
-	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 	GPIO_InitTypeDef GpioLedInit;
-	GpioLedInit.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GpioLedInit.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4;
 	GpioLedInit.GPIO_Mode = GPIO_Mode_OUT;
 	GpioLedInit.GPIO_OType = GPIO_OType_PP;
 	GpioLedInit.GPIO_Speed = GPIO_Speed_100MHz;
 	GpioLedInit.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOA, &GpioLedInit);
+	GPIO_Init(GPIOD, &GpioLedInit);
 }
 
+/**
+ * @brief  Setups the engines
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
+void SetupEngines(void)
+{
+	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
+	GPIO_SetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
+
+	GPIO_ResetBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_11);
+	GPIO_SetBits(GPIOD, GPIO_Pin_10 | GPIO_Pin_12);
+
+}
 
 /**
  * @brief  Configures the user button

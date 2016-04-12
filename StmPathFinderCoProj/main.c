@@ -18,7 +18,7 @@ int main(void)
 	ButtonInit();
 	ButtonInterruptInit();
 
-	/*COnfig for Adc */
+	/*Config for Adc */
 	AdcInit();
 
 	while (1)
@@ -28,12 +28,3 @@ int main(void)
 
 }
 
-void SetupEngines(void)
-{
-	GPIO_ResetBits(GPIOA, GPIO_Pin_14 | GPIO_Pin_10);
-	GPIO_SetBits(GPIOA, GPIO_Pin_13 | GPIO_Pin_15);
-
-	GPIO_ResetBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_11);
-	GPIO_SetBits(GPIOD, GPIO_Pin_10 | GPIO_Pin_12);
-
-}

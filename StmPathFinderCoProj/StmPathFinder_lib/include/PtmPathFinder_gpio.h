@@ -7,4 +7,10 @@ void ButtonInit(void);
 
 void ButtonInterruptInit(void);
 
+void LeftEngineInit(void);
+
+void RightEngineInit(void);
+
+void SetupEngines(void);
+
 #endif
