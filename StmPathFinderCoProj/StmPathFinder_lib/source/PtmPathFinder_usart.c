@@ -27,24 +27,25 @@ void UsartConfig(void)
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
 	GPIO_InitTypeDef GPIO_Tx_InitStucture;
 	GPIO_Tx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Tx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Tx_InitStucture.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Tx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_Tx_InitStucture.GPIO_Pin = GPIO_Pin_10;
-	GPIO_Tx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Tx_InitStucture.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_Init(GPIOC, &GPIO_Tx_InitStucture);
 
 	//Konfiguracja lini Rx
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_USART3);
 	GPIO_InitTypeDef GPIO_Rx_InitStucture;
 	GPIO_Rx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Rx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_Rx_InitStucture.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Rx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_Rx_InitStucture.GPIO_Pin = GPIO_Pin_11;
-	GPIO_Rx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Rx_InitStucture.GPIO_Speed = GPIO_Speed_100MHz;
 	GPIO_Init(GPIOC, &GPIO_Rx_InitStucture);
 
 	USART_InitTypeDef USART_InitStucture;
-	USART_InitStucture.USART_BaudRate = 115200;
+
+	USART_InitStucture.USART_BaudRate = 38400;
 	USART_InitStucture.USART_WordLength = USART_WordLength_8b;
 	USART_InitStucture.USART_StopBits = USART_StopBits_1;
 	USART_InitStucture.USART_Parity = USART_Parity_No;
@@ -61,11 +62,12 @@ void UsartConfig(void)
  * @param 	None
  * @retval None
  */
-void SendChar(uint16_t character)
+void SendChar(char character)
 {
-	USART_SendData(USART3, character);
-	while(USART_GetFlagStatus(USART3, USART_FLAG_TC)==RESET);
 
+	while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET){}
+		;
+	USART_SendData(USART3, character);
 }
 
 /**
@@ -74,9 +76,10 @@ void SendChar(uint16_t character)
  * @param 	None
  * @retval None
  */
-uint16_t ReceiveChar(void)
+uint8_t ReceiveChar(void)
 {
 
-	while(USART_GetFlagStatus(USART3, USART_FLAG_RXNE)==RESET);
-		return USART_ReceiveData(USART3);
+	while (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) == RESET){}
+		;
+	return USART_ReceiveData(USART3);
 }
