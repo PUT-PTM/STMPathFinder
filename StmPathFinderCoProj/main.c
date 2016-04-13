@@ -1,8 +1,10 @@
 #include "PtmPathFinder_gpio.h"
 #include "PtmPathFinder_adc.h"
-#include <math.h>
+#include "PtmPathFinder_usart.h"
 #include "stm32f4xx_gpio.h"
 
+
+int response;
 
 int main(void)
 {
@@ -21,9 +23,13 @@ int main(void)
 	/*Config for Adc */
 	AdcInit();
 
+	/*Configures USART for Bluetooth */
+
+	UsartConfig();
+
 	while (1)
 	{
-
+		response = ReceiveChar();
 	}
 
 }

@@ -1,5 +1,5 @@
 #include "PtmPathFinder_gpio.h"
-
+#include "PtmPathFinder_usart.h"
 #include "stm32f4xx_conf.h"
 #include "stm32f4xx_gpio.h"
 #include "stm32f4xx_rcc.h"
@@ -140,7 +140,9 @@ void EXTI0_IRQHandler(void)
 	{
 
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
-		GPIO_ToggleBits(GPIOA, GPIO_Pin_10 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     );
+		GPIO_ToggleBits(GPIOA, GPIO_Pin_10 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
+		SendChar('A');
+
 
 		EXTI_ClearITPendingBit(EXTI_Line0);
 	}
