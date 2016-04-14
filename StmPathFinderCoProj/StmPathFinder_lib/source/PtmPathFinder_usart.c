@@ -6,7 +6,6 @@
 #include "stm32f4xx_syscfg.h"
 #include "stm32f4xx_exti.h"
 #include "stm32f4xx_usart.h"
-#include "ctype.h"
 #include "misc.h"
 
 /**
@@ -18,7 +17,7 @@
 void UsartConfig(void)
 {
 	//PC 10 USART_ TX
-	//i PC11 USART _RX
+	//PC11 USART _RX
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
@@ -27,20 +26,20 @@ void UsartConfig(void)
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
 	GPIO_InitTypeDef GPIO_Tx_InitStucture;
 	GPIO_Tx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Tx_InitStucture.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Tx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
 	GPIO_Tx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_Tx_InitStucture.GPIO_Pin = GPIO_Pin_10;
-	GPIO_Tx_InitStucture.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_Tx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &GPIO_Tx_InitStucture);
 
 	//Konfiguracja lini Rx
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_USART3);
 	GPIO_InitTypeDef GPIO_Rx_InitStucture;
 	GPIO_Rx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Rx_InitStucture.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Rx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
 	GPIO_Rx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
 	GPIO_Rx_InitStucture.GPIO_Pin = GPIO_Pin_11;
-	GPIO_Rx_InitStucture.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_Rx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOC, &GPIO_Rx_InitStucture);
 
 	USART_InitTypeDef USART_InitStucture;
@@ -64,8 +63,7 @@ void UsartConfig(void)
  */
 void SendChar(char character)
 {
-
-	while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET){}
+	while (USART_GetFlagStatus(USART3, USART_FLAG_TC) == RESET)
 		;
 	USART_SendData(USART3, character);
 }
@@ -76,10 +74,35 @@ void SendChar(char character)
  * @param 	None
  * @retval None
  */
-uint8_t ReceiveChar(void)
+uint16_t ReceiveChar(void)
 {
-
-	while (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) == RESET){}
+	while (USART_GetFlagStatus(USART3, USART_FLAG_RXNE) == RESET)
 		;
 	return USART_ReceiveData(USART3);
 }
+
+void UsartInterruptionInit()
+{
+	NVIC_InitTypeDef NVIC_InitStructure;
+	USART_ITConfig(USART3, USART_IT_RXNE, ENABLE);
+
+	NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+
+	NVIC_Init(&NVIC_InitStructure);
+	NVIC_EnableIRQ(USART3_IRQn);
+
+}
+
+uint16_t bluetooth_data = 0;
+void USART3_IRQHandler(void)
+{
+	if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
+	{
+		GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
+		bluetooth_data = USART3->DR;
+	}
+}
+

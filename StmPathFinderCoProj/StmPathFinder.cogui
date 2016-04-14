@@ -9,10 +9,21 @@
 <editorArea activeWorkbook="DefaultEditorWorkbook">
 <info part="DefaultEditorWorkbook">
 <folder appearance="1" expanded="2">
-<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
 </folder>
 </info>
 </editorArea>
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/Users/Piotrek/Documents/STMPathFinder/StmPathFinderCoProj/main.c" title="main.c" tooltip="C:/Users/Piotrek/Documents/STMPathFinder/StmPathFinderCoProj/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="434" selectionTopPixel="210"/>
+</editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_usart.c" partName="PtmPathFinder_usart.c" path="C:/Users/Piotrek/Documents/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_usart.c" title="PtmPathFinder_usart.c" tooltip="C:/Users/Piotrek/Documents/STMPathFinder/StmPathFinderCoProj/StmPathFinder_lib/source/PtmPathFinder_usart.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/StmPathFinder/PtmPathFinder_usart.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="1910" selectionOffset="407" selectionTopPixel="0"/>
+</editor>
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
@@ -21,7 +32,7 @@
 <element path="/StmPathFinder"/>
 </expanded>
 <selection>
-<element path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<element path="/StmPathFinder/PtmPathFinder_usart.c"/>
 </selection>
 </viewState>
 </view>
@@ -38,7 +49,7 @@
 <viewState/>
 </view>
 </views>
-<perspectives activePart="org.eclipse.ui.console.ConsoleView" activePerspective="org.coocox.builder.perspective.CoBuilder">
+<perspectives activePart="org.eclipse.cdt.ui.editor.CEditor" activePerspective="org.coocox.builder.perspective.CoBuilder">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.coocox.builder.ui.PerspectiveCoBuilder" id="org.coocox.builder.perspective.CoBuilder" label="CooCox CoBuilder"/>
 <alwaysOnActionSet id="org.coocox.component.ui.actionSet"/>
@@ -217,37 +228,99 @@
 </perspective>
 </perspectives>
 <workingSets/>
-<navigationHistory/>
+<navigationHistory>
+<editors>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_usart.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/StmPathFinder/PtmPathFinder_usart.h"/>
+</editors>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="325" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.c" index="1">
+<position/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="336" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="236" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
+<position info="not_deleted" x="1809" y="0"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="350" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.h" index="3">
+<position info="not_deleted" x="197" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
+<position info="not_deleted" x="1809" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.h" index="3">
+<position/>
+</item>
+<item historyLabel="PtmPathFinder_usart.c" index="1">
+<position info="not_deleted" x="1938" y="29"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.h" index="3">
+<position info="not_deleted" x="209" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_gpio.c" index="2">
+<position info="not_deleted" x="1809" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.h" index="3">
+<position info="not_deleted" x="209" y="0"/>
+</item>
+<item historyLabel="PtmPathFinder_usart.c" index="1">
+<position info="not_deleted" x="2177" y="25"/>
+</item>
+<item historyLabel="main.c" index="0">
+<position info="not_deleted" x="434" y="0"/>
+</item>
+<item active="true" historyLabel="PtmPathFinder_usart.c" index="1">
+<position info="not_deleted" x="2185" y="11"/>
+</item>
+</navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
 </page>
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>
-<subPage/>
-</persistable>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.c" tooltip="StmPathFinder/PtmPathFinder_gpio.c">
-<persistable path="/StmPathFinder/PtmPathFinder_gpio.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx.h" tooltip="StmPathFinder/cmsis_boot/stm32f4xx.h">
-<persistable path="/StmPathFinder/cmsis_boot/stm32f4xx.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_tim.h" tooltip="StmPathFinder/cmsis_lib/include/stm32f4xx_tim.h">
-<persistable path="/StmPathFinder/cmsis_lib/include/stm32f4xx_tim.h"/>
-</file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>
-<subPage/>
-</persistable>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_usart.c" tooltip="StmPathFinder/PtmPathFinder_usart.c">
 <persistable path="/StmPathFinder/PtmPathFinder_usart.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_usart.h" tooltip="StmPathFinder/PtmPathFinder_usart.h">
 <persistable path="/StmPathFinder/PtmPathFinder_usart.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.c" tooltip="StmPathFinder/PtmPathFinder_gpio.c">
+<persistable path="/StmPathFinder/PtmPathFinder_gpio.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="StmPathFinder/main.c">
+<persistable path="/StmPathFinder/main.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Stm32PustyProjekt/main.c">
+<persistable path="/Stm32PustyProjekt/main.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
+</persistable>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.h" tooltip="StmPathFinder/PtmPathFinder_adc.h">
+<persistable path="/StmPathFinder/PtmPathFinder_adc.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_adc.c" tooltip="StmPathFinder/PtmPathFinder_adc.c">
 <persistable path="/StmPathFinder/PtmPathFinder_adc.c"/>
@@ -255,25 +328,20 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_gpio.h" tooltip="StmPathFinder/PtmPathFinder_gpio.h">
 <persistable path="/StmPathFinder/PtmPathFinder_gpio.h"/>
 </file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>
-<subPage/>
-</persistable>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_adc.c" tooltip="StmPathFinder/cmsis_lib/source/stm32f4xx_adc.c">
+<persistable path="/StmPathFinder/cmsis_lib/source/stm32f4xx_adc.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.h" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.h">
-<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.h"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_gpio.h" tooltip="StmPathFinder/cmsis_lib/include/stm32f4xx_gpio.h">
+<persistable path="/StmPathFinder/cmsis_lib/include/stm32f4xx_gpio.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="system_stm32f4xx.c" tooltip="StmPathFinder/cmsis_boot/system_stm32f4xx.c">
-<persistable path="/StmPathFinder/cmsis_boot/system_stm32f4xx.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.c" tooltip="StmPathFinder/cmsis_lib/source/stm32f4xx_usart.c">
+<persistable path="/StmPathFinder/cmsis_lib/source/stm32f4xx_usart.c"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Test/main.c">
-<persistable path="/Test/main.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f4xx_usart.h" tooltip="StmPathFinder/cmsis_lib/include/stm32f4xx_usart.h">
+<persistable path="/StmPathFinder/cmsis_lib/include/stm32f4xx_usart.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_pwm.h" tooltip="StmPathFinder/PtmPathFinder_pwm.h">
-<persistable path="/StmPathFinder/PtmPathFinder_pwm.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="PtmPathFinder_pwm.c" tooltip="StmPathFinder/PtmPathFinder_pwm.c">
-<persistable path="/StmPathFinder/PtmPathFinder_pwm.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="Stm32PustyProjekt/main.c">
+<persistable path="/Stm32PustyProjekt/main.c"/>
 </file>
 </mruList>
 </workbench>

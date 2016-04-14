@@ -5,8 +5,8 @@
 
 void UsartConfig(void);
 
-//void SendChar(uint16_t character);
+void SendChar(char character);
 
-//char ReceiveChar(void);
+uint16_t ReceiveChar(void);
 
 #endif

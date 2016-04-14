@@ -35,14 +35,24 @@ void LedInit(void)
 void EnginesInit(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
+
 	GPIO_InitTypeDef GpioLedInit;
-	GpioLedInit.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4
-			| GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+	GpioLedInit.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4;
 	GpioLedInit.GPIO_Mode = GPIO_Mode_OUT;
 	GpioLedInit.GPIO_OType = GPIO_OType_PP;
 	GpioLedInit.GPIO_Speed = GPIO_Speed_100MHz;
 	GpioLedInit.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOD, &GpioLedInit);
+
+
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
+	GPIO_InitTypeDef GpioLedInitStructure;
+	GpioLedInitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+	GpioLedInitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GpioLedInitStructure.GPIO_OType = GPIO_OType_PP;
+	GpioLedInitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GpioLedInitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOE, &GpioLedInitStructure);
 }
 
 /**
@@ -56,8 +66,8 @@ void SetupEngines(void)
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
 	GPIO_SetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
 
-	GPIO_ResetBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_11);
-	GPIO_SetBits(GPIOD, GPIO_Pin_10 | GPIO_Pin_12);
+	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_11);
+	GPIO_SetBits(GPIOE, GPIO_Pin_10 | GPIO_Pin_12);
 
 }
 
