@@ -3,16 +3,15 @@
 #include "PtmPathFinder_usart.h"
 #include "stm32f4xx_gpio.h"
 
-
 int main(void)
 {
 	SystemInit();
+
 	LedInit();
-	//EnginesInit();
-	//SetupEngines();
-	//ButtonInit();
-	//ButtonInterruptInit();
-	//ADC2_init();
+	EnginesInit();
+	ButtonInit();
+	ButtonInterruptInit();
+	AdcInit();
 
 	UsartConfig();
 	UsartInterruptionInit();
@@ -23,5 +22,4 @@ int main(void)
 	}
 
 }
-
 

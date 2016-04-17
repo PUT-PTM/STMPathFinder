@@ -44,10 +44,10 @@ void EnginesInit(void)
 	GpioLedInit.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_Init(GPIOD, &GpioLedInit);
 
-
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
 	GPIO_InitTypeDef GpioLedInitStructure;
-	GpioLedInitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12;
+	GpioLedInitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11
+			| GPIO_Pin_12;
 	GpioLedInitStructure.GPIO_Mode = GPIO_Mode_OUT;
 	GpioLedInitStructure.GPIO_OType = GPIO_OType_PP;
 	GpioLedInitStructure.GPIO_Speed = GPIO_Speed_100MHz;
@@ -61,7 +61,7 @@ void EnginesInit(void)
  * @param 	None
  * @retval None
  */
-void SetupEngines(void)
+void DriveStraight(void)
 {
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
 	GPIO_SetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
@@ -69,6 +69,28 @@ void SetupEngines(void)
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_11);
 	GPIO_SetBits(GPIOE, GPIO_Pin_10 | GPIO_Pin_12);
 
+}
+
+void TurnRight(void)
+{
+	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
+	GPIO_SetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
+
+	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
+}
+
+void TurnLeft(void)
+{
+	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_11);
+	GPIO_SetBits(GPIOE, GPIO_Pin_10 | GPIO_Pin_12);
+
+	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
+}
+
+void StopVehicle(void)
+{
+	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
 }
 
 /**
@@ -130,6 +152,8 @@ void EXTI0_IRQHandler(void)
 		/*Silniki jazda w przód i w ty³ */
 		//GPIO_ToggleBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
 		//GPIO_ToggleBits(GPIOA, GPIO_Pin_10 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
+		DriveStraight();
+
 		GPIO_ToggleBits(GPIOD,
 				GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 

@@ -96,13 +96,32 @@ void UsartInterruptionInit()
 
 }
 
-uint16_t bluetooth_data = 0;
+uint8_t bluetooth_data = 0;
 void USART3_IRQHandler(void)
 {
 	if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
 	{
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
 		bluetooth_data = USART3->DR;
+
+		if (bluetooth_data == 227)
+		{
+			DriveStraight();
+		}
+		else if (bluetooth_data == 228)
+		{
+			TurnRight();
+		}
+		else if (bluetooth_data == 231)
+		{
+			TurnLeft();
+		}
+		else if (bluetooth_data == 232)
+		{
+			StopVehicle();
+		}
+
+		NVIC_ClearPendingIRQ(USART3_IRQn);
 	}
 }
 
