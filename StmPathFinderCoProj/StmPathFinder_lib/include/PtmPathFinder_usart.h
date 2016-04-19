@@ -9,4 +9,8 @@ void SendChar(char character);
 
 uint16_t ReceiveChar(void);
 
+void UsartInterruptionInit();
+
+void USART3_IRQHandler(void);
+
 #endif

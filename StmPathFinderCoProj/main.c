@@ -9,10 +9,9 @@ int main(void)
 
 	LedInit();
 	EnginesInit();
-	ButtonInit();
-	ButtonInterruptInit();
+	UserButtonInit();
+	UserButtonInterruptInit();
 	AdcInit();
-
 	UsartConfig();
 	UsartInterruptionInit();
 

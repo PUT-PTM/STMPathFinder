@@ -3,6 +3,7 @@
 *.ko
 *.obj
 *.elf
+*.pbxproj
 
 
 # Precompiled Headers

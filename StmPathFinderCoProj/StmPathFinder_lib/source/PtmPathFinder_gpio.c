@@ -56,7 +56,7 @@ void EnginesInit(void)
 }
 
 /**
- * @brief  Setups the engines
+ * @brief  Setups the engines to drive straight
  * @note	Configures the GPIO ports
  * @param 	None
  * @retval None
@@ -71,7 +71,13 @@ void DriveStraight(void)
 
 }
 
-void TurnRight(void)
+/**
+ * @brief  Setups the engines to turn left
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
+void TurnLeft(void)
 {
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
 	GPIO_SetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
@@ -79,7 +85,13 @@ void TurnRight(void)
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
 }
 
-void TurnLeft(void)
+/**
+ * @brief  Setups the engines to turn right
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
+void TurnRight(void)
 {
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_11);
 	GPIO_SetBits(GPIOE, GPIO_Pin_10 | GPIO_Pin_12);
@@ -87,6 +99,12 @@ void TurnLeft(void)
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
 }
 
+/**
+ * @brief  Setups the engines to stop vehicle
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
 void StopVehicle(void)
 {
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
@@ -99,7 +117,7 @@ void StopVehicle(void)
  * @param 	None
  * @retval None
  */
-void ButtonInit(void)
+void UserButtonInit(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
@@ -119,7 +137,7 @@ void ButtonInit(void)
  * @param 	None
  * @retval None
  */
-void ButtonInterruptInit(void)
+void UserButtonInterruptInit(void)
 {
 
 	NVIC_InitTypeDef str;
@@ -149,11 +167,6 @@ void EXTI0_IRQHandler(void)
 {
 	if (EXTI_GetITStatus(EXTI_Line0) == SET)
 	{
-		/*Silniki jazda w przód i w ty³ */
-		//GPIO_ToggleBits(GPIOD, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
-		//GPIO_ToggleBits(GPIOA, GPIO_Pin_10 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-		DriveStraight();
-
 		GPIO_ToggleBits(GPIOD,
 				GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 

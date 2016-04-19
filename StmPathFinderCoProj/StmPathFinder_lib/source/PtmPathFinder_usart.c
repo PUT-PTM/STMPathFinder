@@ -44,7 +44,7 @@ void UsartConfig(void)
 
 	USART_InitTypeDef USART_InitStucture;
 
-	USART_InitStucture.USART_BaudRate = 38400;
+	USART_InitStucture.USART_BaudRate = 9600;
 	USART_InitStucture.USART_WordLength = USART_WordLength_8b;
 	USART_InitStucture.USART_StopBits = USART_StopBits_1;
 	USART_InitStucture.USART_Parity = USART_Parity_No;
@@ -81,6 +81,12 @@ uint16_t ReceiveChar(void)
 	return USART_ReceiveData(USART3);
 }
 
+/**
+ * @brief  Configures the NVIC for Usart
+ * @note	Configures the USART3 Interrupt channel
+ * @param 	None
+ * @retval None
+ */
 void UsartInterruptionInit()
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
@@ -96,27 +102,33 @@ void UsartInterruptionInit()
 
 }
 
-uint8_t bluetooth_data = 0;
+/**
+ * @brief  Handler for USART3 interrupt
+ * @param 	None
+ * @retval None
+ */
 void USART3_IRQHandler(void)
 {
 	if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
 	{
+		char bluetooth_data = 0;
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
 		bluetooth_data = USART3->DR;
 
-		if (bluetooth_data == 227)
+		if (bluetooth_data == 'w')
 		{
 			DriveStraight();
 		}
-		else if (bluetooth_data == 228)
-		{
-			TurnRight();
-		}
-		else if (bluetooth_data == 231)
+		else if (bluetooth_data == 'a')
 		{
 			TurnLeft();
 		}
-		else if (bluetooth_data == 232)
+		else if (bluetooth_data == 'd')
+		{
+			TurnRight();
+		}
+
+		else if (bluetooth_data == 's')
 		{
 			StopVehicle();
 		}
@@ -124,4 +136,3 @@ void USART3_IRQHandler(void)
 		NVIC_ClearPendingIRQ(USART3_IRQn);
 	}
 }
-

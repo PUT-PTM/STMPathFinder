@@ -3,12 +3,20 @@
 
 void LedInit(void);
 
-void ButtonInit(void);
-
-void ButtonInterruptInit(void);
-
 void EnginesInit(void);
 
-void SetupEngines(void);
+void DriveStraight(void);
+
+void TurnLeft(void);
+
+void TurnRight(void);
+
+void StopVehicle(void);
+
+void UserButtonInit(void);
+
+void UserButtonInterruptInit(void);
+
+void EXTI0_IRQHandler(void);
 
 #endif

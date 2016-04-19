@@ -22,32 +22,30 @@ void AdcInit(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 
-	ADC_CommonInitTypeDef common_str;
-	common_str.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
-	common_str.ADC_Mode = ADC_Mode_Independent;
-	common_str.ADC_Prescaler = ADC_Prescaler_Div2;
-	common_str.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
-	ADC_CommonInit(&common_str);
+	ADC_CommonInitTypeDef str;
+	str.ADC_Mode = ADC_Mode_Independent;
+	str.ADC_Prescaler = ADC_Prescaler_Div2;
+	str.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+	str.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+	ADC_CommonInit(&str);
 
-	ADC_InitTypeDef str;
-	str.ADC_Resolution = ADC_Resolution_12b;
-	str.ADC_ContinuousConvMode = ENABLE;
-	str.ADC_DataAlign = ADC_DataAlign_Right;
-	str.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1;
-	str.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
-	str.ADC_NbrOfConversion = 1;
-	ADC_Init(ADC1, &str);
+	ADC_InitTypeDef stru;
+	stru.ADC_Resolution = ADC_Resolution_12b;
+	stru.ADC_ScanConvMode = DISABLE;
+	stru.ADC_ContinuousConvMode = ENABLE;
+	stru.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1;
+	stru.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	stru.ADC_DataAlign = ADC_DataAlign_Right;
+	stru.ADC_NbrOfConversion = 1;
+	ADC_Init(ADC1, &stru);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 1, ADC_SampleTime_84Cycles);
 	ADC_Cmd(ADC1, ENABLE);
 
-	GPIO_InitTypeDef stru;
-
-	stru.GPIO_Pin = GPIO_Pin_1;
-	stru.GPIO_Mode = GPIO_Mode_AN;
-	stru.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	stru.GPIO_OType = GPIO_OType_PP;
-	stru.GPIO_Speed = GPIO_Speed_100MHz;
-	GPIO_Init(GPIOA, &stru);
+	GPIO_InitTypeDef struu;
+	struu.GPIO_Pin = GPIO_Pin_1;
+	struu.GPIO_Mode = GPIO_Mode_AN;
+	struu.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOA, &struu);
 }
 
 /**
@@ -55,10 +53,11 @@ void AdcInit(void)
  * @param  none
  * @retval The Data conversion value.
  */
+
 uint16_t GetConversionValueFromAdc(void)
 {
 	ADC_SoftwareStartConv(ADC1);
-	while (ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET)
-		;
+	while(ADC_GetFlagStatus(ADC1,ADC_FLAG_EOC)==RESET);
 	return ADC_GetConversionValue(ADC1);
 }
+
