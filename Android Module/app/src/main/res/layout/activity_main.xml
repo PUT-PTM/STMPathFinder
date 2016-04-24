@@ -27,7 +27,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="/\\"
+        android:text="w"
         android:id="@+id/buttonUp"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/buttonLeft"
@@ -36,7 +36,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\\/"
+        android:text="s"
         android:id="@+id/buttonDown"
         android:layout_below="@+id/buttonUp"
         android:layout_centerHorizontal="true" />
@@ -44,7 +44,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="&lt;"
+        android:text="a"
         android:id="@+id/buttonLeft"
         android:layout_alignBottom="@+id/buttonDown"
         android:layout_toLeftOf="@+id/buttonDown"
@@ -53,7 +53,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=">"
+        android:text="d"
         android:id="@+id/buttonRight"
         android:layout_alignTop="@+id/buttonDown"
         android:layout_toRightOf="@+id/buttonDown"
@@ -64,8 +64,8 @@
         android:layout_height="wrap_content"
         android:text="Start exploring"
         android:id="@+id/buttonExploring"
+        android:layout_marginTop="50dp"
         android:layout_below="@+id/buttonDown"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
