@@ -24,8 +24,7 @@ public class BluetoothManager {
     private OutputStream outputStream;
 
     public final UUID MY_UUID = UUID.fromString("00000000-0000-1000-8000-00805F9B34FB");
-    public final String ROBOT_BLUETOOTH_NAME = "ROBOT_BLUETOOTH_NAME";
-    //public final String ROBOT_BLUETOOTH_ADDRESS; -- bardzo potrzebne
+    public final String ROBOT_BLUETOOTH_NAME = "HUAWEI U8815"; //HC-06, "HUAWEI U8815"
 
     public BluetoothManager(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
@@ -37,24 +36,26 @@ public class BluetoothManager {
     }
 
     private void init() {
+        String name;
         Set<BluetoothDevice> devices = bluetoothAdapter.getBondedDevices();
         for (BluetoothDevice device : devices) {
-            if (device.getName().equals(ROBOT_BLUETOOTH_NAME)) { //device.getAddress().equals(ROBOT_BLUETOOTH_ADDRESS)
+            name = device.getName();
+            if (name.equals(ROBOT_BLUETOOTH_NAME)) { //device.getAddress().equals(ROBOT_BLUETOOTH_ADDRESS)
                 bluetoothDevice = device;
             }
         }
-        checkConnection();
         try {
+            checkConnection();
             outputStream = bluetoothDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID).getOutputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            Toast.makeText(appCompatActivity.getBaseContext(), "Devices are not bounded!", Toast.LENGTH_LONG).show();
+            appCompatActivity.finish();
         }
     }
 
-    private void checkConnection() {
+    private void checkConnection() throws Exception {
         if (bluetoothDevice == null) {
-            Toast.makeText(appCompatActivity.getBaseContext(), "Devices are not bounded!", Toast.LENGTH_LONG).show();
-            appCompatActivity.finish();
+            throw new Exception();
         }
     }
 }

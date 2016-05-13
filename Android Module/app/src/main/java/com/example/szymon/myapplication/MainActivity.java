@@ -1,24 +1,19 @@
 package com.example.szymon.myapplication;
 
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,14 +22,15 @@ public class MainActivity extends AppCompatActivity {
             R.id.buttonUp,
             R.id.buttonDown,
             R.id.buttonLeft,
-            R.id.buttonRight,
-            R.id.buttonExploring
+            R.id.buttonRight
     };
 
     private BluetoothManager bluetoothManager;
     private TextView textView = null;
-    private OutputStream outputStream = null;
+    private OutputStream bluetoothOutputStream = null;
     private Map<Button, String> moveButtons = new HashMap<>();
+    private Switch registerSwitch;
+    private MappingService mappingService = new MappingService();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +42,27 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         textView = (TextView) findViewById(R.id.textView);
-        bluetoothManager = new BluetoothManager(this);
-        outputStream = bluetoothManager.getOutputStream();
-        //Initialize buttons, that handle on press events, and sending data
+        registerSwitch = (Switch) findViewById(R.id.registering);
+
+        activateBluetooth();
+
         initMovingButtons();
         initExploringButton();
-
+        initClearButton();
     }
 
     private void initMovingButtons() {
         for (int buttonId : movingButton) {
             Button tmpButton = (Button) findViewById(buttonId);
-            //ten if dlatego, że srodowisko bardzo balo sie o nulla 0_o
             if (tmpButton != null) {
                 tmpButton.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View v, MotionEvent event) {
-                        Button button = (Button) v;
-                        while (event.getAction() == MotionEvent.ACTION_DOWN) {
-                            sendData(moveButtons.get(button));
+                        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
+                            Button button = (Button) v;
+                            String key = button.getText().toString();
+//                        sendDataViaBluetooth(key);
+                            registerIfEnabled(key);
                         }
                         return true;
                     }
@@ -74,18 +72,84 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void sendData(String message) {
-        byte[] msgBuffer = message.getBytes();
-
-        try {
-            outputStream.write(msgBuffer);
-        } catch (IOException e) {
-            errorExit("Fatal Error", "Error occurred while sending Data");
+    private void initExploringButton() {
+        Button tmpButton = (Button) findViewById(R.id.buttonExploring);
+        if (tmpButton != null) {
+            tmpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button button = (Button) v;
+                    button.setEnabled(false);
+                    runFromHistory();
+                    button.setEnabled(true);
+                }
+            });
         }
     }
 
-    private void initExploringButton() {
-        textView.setText("This button is not yet implemented.");
+    private void initClearButton() {
+        Button tmpButton = (Button) findViewById(R.id.buttonClear);
+        if (tmpButton != null) {
+            tmpButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mappingService.clearData();
+                }
+            });
+        }
+    }
+
+    private void activateBluetooth() {
+        bluetoothManager = new BluetoothManager(this);
+        bluetoothOutputStream = bluetoothManager.getOutputStream();
+    }
+
+    private void registerIfEnabled(String key) {
+        if (registerSwitch.isChecked()) {
+            mappingService.addData(key);
+        }
+    }
+
+    private void runFromHistory() {
+        if (mappingService.getMoveHistory().size() != 0) {
+            enableUi(false);
+            Iterator<MoveData> iterator = mappingService.getMoveHistory().iterator();
+            MoveData firstMeasure = iterator.next();
+            long lastTimestamp = firstMeasure.getTimestamp();
+//            sendDataViaBluetooth(firstMeasure.getKey());
+            while (iterator.hasNext()) {
+                MoveData measure = iterator.next();
+                try {
+                    long sleepTime = measure.getTimestamp() - lastTimestamp;
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                sendDataViaBluetooth(measure.getKey());
+                lastTimestamp = measure.getTimestamp();
+            }
+            enableUi(true);
+        }
+    }
+
+    private void enableUi(Boolean enabled) {
+        Button button;
+        for (int buttonId : movingButton) {
+            button = (Button) findViewById(buttonId);
+            button.setEnabled(enabled);
+        }
+        ((Button) findViewById(R.id.buttonExploring)).setEnabled(enabled);
+        ((Button) findViewById(R.id.buttonClear)).setEnabled(enabled);
+        ((Switch) findViewById(R.id.registering)).setEnabled(enabled);
+    }
+
+    private void sendDataViaBluetooth(String message) {
+        try {
+            bluetoothOutputStream.write(message.getBytes());
+            bluetoothOutputStream.write("\n".getBytes());
+        } catch (IOException e) {
+            errorExit("Fatal Error", "Error occurred while sending Data");
+        }
     }
 
     private void errorExit(String title, String message) {
