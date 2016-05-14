@@ -3,8 +3,10 @@
 #include "misc.h"
 #include "stm32f4xx_syscfg.h"
 
-void AdcInit(void);
+void Adc1Init(void);
 
-uint16_t GetConversionValueFromAdc(void);
+void Adc2Init(void);
+
+uint16_t GetConversionValueFromAdc(ADC_TypeDef* ADCx);
 
 #endif

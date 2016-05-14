@@ -17,7 +17,7 @@
  * @param 	None
  * @retval None
  */
-void AdcInit(void)
+void Adc1Init(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
@@ -48,16 +48,39 @@ void AdcInit(void)
 	GPIO_Init(GPIOA, &struu);
 }
 
+void Adc2Init(void)
+{
+	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC2, ENABLE);
+
+	ADC_InitTypeDef str;
+	str.ADC_Resolution = ADC_Resolution_12b;
+	str.ADC_ContinuousConvMode = ENABLE;
+	str.ADC_DataAlign = ADC_DataAlign_Right;
+	str.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC2;
+	str.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	str.ADC_NbrOfConversion = 1;
+	ADC_Init(ADC2, &str);
+	ADC_RegularChannelConfig(ADC2, ADC_Channel_2, 1, ADC_SampleTime_84Cycles);
+	ADC_Cmd(ADC2, ENABLE);
+
+	GPIO_InitTypeDef stru;
+	stru.GPIO_Mode = GPIO_Mode_AN;
+	stru.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	stru.GPIO_Pin = GPIO_Pin_2;
+	GPIO_Init(GPIOA, &stru);
+}
+
 /**
- * @brief  Returns the last ADC1 conversion result data for regular channel.
- * @param  none
+ * @brief  Returns the last ADC conversion result data for regular channel.
+ * @param  ADCx: where x can be 1, 2 or 3 to select the ADC peripheral.
  * @retval The Data conversion value.
  */
 
-uint16_t GetConversionValueFromAdc(void)
+uint16_t GetConversionValueFromAdc(ADC_TypeDef* ADCx)
 {
-	ADC_SoftwareStartConv(ADC1);
-	while(ADC_GetFlagStatus(ADC1,ADC_FLAG_EOC)==RESET);
-	return ADC_GetConversionValue(ADC1);
+	ADC_SoftwareStartConv(ADCx);
+	while(ADC_GetFlagStatus(ADCx,ADC_FLAG_EOC)==RESET);
+	return ADC_GetConversionValue(ADCx);
 }
 

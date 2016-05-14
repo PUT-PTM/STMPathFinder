@@ -11,7 +11,8 @@ int main(void)
 	EnginesInit();
 	UserButtonInit();
 	UserButtonInterruptInit();
-	AdcInit();
+	Adc1Init();
+	Adc2Init();
 	UsartConfig();
 	UsartInterruptionInit();
 
