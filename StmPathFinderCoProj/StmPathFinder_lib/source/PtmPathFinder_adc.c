@@ -48,6 +48,12 @@ void Adc1Init(void)
 	GPIO_Init(GPIOA, &struu);
 }
 
+/**
+ * @brief  Configures the ADC
+ * @note	Configures the ADC on pin PA2, 12 bit resolution
+ * @param 	None
+ * @retval None
+ */
 void Adc2Init(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
@@ -83,4 +89,5 @@ uint16_t GetConversionValueFromAdc(ADC_TypeDef* ADCx)
 	while(ADC_GetFlagStatus(ADCx,ADC_FLAG_EOC)==RESET);
 	return ADC_GetConversionValue(ADCx);
 }
+
 

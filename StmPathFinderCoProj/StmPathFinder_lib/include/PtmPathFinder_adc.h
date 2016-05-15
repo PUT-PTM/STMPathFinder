@@ -9,4 +9,5 @@ void Adc2Init(void);
 
 uint16_t GetConversionValueFromAdc(ADC_TypeDef* ADCx);
 
+
 #endif

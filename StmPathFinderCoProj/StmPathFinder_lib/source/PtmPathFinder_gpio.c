@@ -170,6 +170,8 @@ void EXTI0_IRQHandler(void)
 		GPIO_ToggleBits(GPIOD,
 				GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 
+		DriveStraight();
+
 		EXTI_ClearITPendingBit(EXTI_Line0);
 	}
 }
