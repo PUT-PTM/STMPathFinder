@@ -1,4 +1,4 @@
-package com.example.szymon.myapplication;
+package com.example.szymon.myapplication.mapping;
 
 import java.util.ArrayList;
 import java.util.List;

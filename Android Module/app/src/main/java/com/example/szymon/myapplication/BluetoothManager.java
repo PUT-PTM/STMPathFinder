@@ -2,14 +2,11 @@ package com.example.szymon.myapplication;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.os.ParcelUuid;
+import android.bluetooth.BluetoothSocket;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import java.io.IOException;
 import java.io.OutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.UUID;
 
@@ -21,10 +18,12 @@ public class BluetoothManager {
     private AppCompatActivity appCompatActivity;
     private BluetoothAdapter bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
     private BluetoothDevice bluetoothDevice = null;
+    private BluetoothSocket bluetoothSocket = null;
     private OutputStream outputStream;
 
-    public final UUID MY_UUID = UUID.fromString("00000000-0000-1000-8000-00805F9B34FB");
-    public final String ROBOT_BLUETOOTH_NAME = "HUAWEI U8815"; //HC-06, "HUAWEI U8815"
+//    public final UUID MY_UUID = UUID.fromString("00000000-0000-1000-8000-00805F9B34FB");
+    public final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    public final String ROBOT_BLUETOOTH_NAME = "HC-06"; //HC-06, "HUAWEI U8815"
 
     public BluetoothManager(AppCompatActivity appCompatActivity) {
         this.appCompatActivity = appCompatActivity;
@@ -46,7 +45,15 @@ public class BluetoothManager {
         }
         try {
             checkConnection();
-            outputStream = bluetoothDevice.createInsecureRfcommSocketToServiceRecord(MY_UUID).getOutputStream();
+            bluetoothSocket = bluetoothDevice.createRfcommSocketToServiceRecord(MY_UUID);
+            bluetoothAdapter.cancelDiscovery();
+            try {
+                bluetoothSocket.connect();
+            } catch (Exception e) {
+                bluetoothSocket.close();
+            }
+
+            outputStream = bluetoothSocket.getOutputStream();
         } catch (Exception e) {
             Toast.makeText(appCompatActivity.getBaseContext(), "Devices are not bounded!", Toast.LENGTH_LONG).show();
             appCompatActivity.finish();

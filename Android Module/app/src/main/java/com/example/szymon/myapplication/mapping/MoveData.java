@@ -1,4 +1,4 @@
-package com.example.szymon.myapplication;
+package com.example.szymon.myapplication.mapping;
 
 /**
  * Created by Szymon on 2016-05-13.

@@ -9,6 +9,9 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.szymon.myapplication.mapping.MappingService;
+import com.example.szymon.myapplication.mapping.MoveData;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.HashMap;
@@ -61,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                         if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
                             Button button = (Button) v;
                             String key = button.getText().toString();
-//                        sendDataViaBluetooth(key);
+                            sendDataViaBluetooth(key);
                             registerIfEnabled(key);
                         }
                         return true;
@@ -116,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
             Iterator<MoveData> iterator = mappingService.getMoveHistory().iterator();
             MoveData firstMeasure = iterator.next();
             long lastTimestamp = firstMeasure.getTimestamp();
-//            sendDataViaBluetooth(firstMeasure.getKey());
+            sendDataViaBluetooth(firstMeasure.getKey());
             while (iterator.hasNext()) {
                 MoveData measure = iterator.next();
                 try {
@@ -125,9 +128,10 @@ public class MainActivity extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-//                sendDataViaBluetooth(measure.getKey());
+                sendDataViaBluetooth(measure.getKey());
                 lastTimestamp = measure.getTimestamp();
             }
+            mappingService.clearData();
             enableUi(true);
         }
     }
