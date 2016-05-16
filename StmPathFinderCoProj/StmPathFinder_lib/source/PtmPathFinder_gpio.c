@@ -163,15 +163,35 @@ void UserButtonInterruptInit(void)
  * @param 	None
  * @retval None
  */
+int mode = 0;
 void EXTI0_IRQHandler(void)
 {
-	if (EXTI_GetITStatus(EXTI_Line0) == SET)
+
+	if (EXTI_GetITStatus(EXTI_Line0) == RESET)
+		return;
+
+	delay_40ms();
+	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == 0)
+		return;
+
+	if (mode % 2 == 0)
 	{
-		GPIO_ToggleBits(GPIOD,
-				GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-
 		DriveStraight();
-
-		EXTI_ClearITPendingBit(EXTI_Line0);
 	}
+	else
+	{
+		StopVehicle();
+	}
+	mode++;
+
+	EXTI_ClearITPendingBit(EXTI_Line0);
+
 }
+
+void delay_40ms(void)
+{
+	int delay_v = 0;
+	for (delay_v = 0; delay_v < 400000; delay_v++)
+		;
+}
+

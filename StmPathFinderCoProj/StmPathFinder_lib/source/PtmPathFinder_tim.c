@@ -70,8 +70,13 @@ void TIM2_IRQHandler(void)
 		napiecie1 = Adc1_Result * 3 / 4095;
 		napiecie2 = Adc2_Result * 3 / 4095;
 
+
 		if(napiecie1 > 2 || napiecie2 > 2)
+		{
 			StopVehicle();
+			GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
+		}
+
 
 		TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	}

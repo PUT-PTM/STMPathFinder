@@ -107,14 +107,14 @@ void UsartInterruptionInit()
  * @param 	None
  * @retval None
  */
+char bluetooth_data = 0;
 void USART3_IRQHandler(void)
 {
 	if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
 	{
-		char bluetooth_data = 0;
+
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
 		bluetooth_data = USART3->DR;
-
 		if (bluetooth_data == 'w')
 		{
 			DriveStraight();
