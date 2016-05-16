@@ -186,7 +186,7 @@ void EXTI0_IRQHandler(void)
 	if (EXTI_GetITStatus(EXTI_Line0) == RESET)
 		return;
 
-	delay_40ms();
+	Delay();
 	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_0) == 0)
 		return;
 
@@ -203,8 +203,13 @@ void EXTI0_IRQHandler(void)
 	EXTI_ClearITPendingBit(EXTI_Line0);
 
 }
-
-void delay_40ms(void)
+/**
+ * @brief  The simple function to delay
+ * @note	Function used to debounce the user button
+ * @param 	None
+ * @retval None
+ */
+void Delay(void)
 {
 	int delay_v = 0;
 	for (delay_v = 0; delay_v < 400000; delay_v++)

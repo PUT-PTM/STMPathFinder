@@ -55,7 +55,6 @@ void UsartConfig(void)
 
 }
 
-
 /**
  * @brief  Sends single character
  * @note
@@ -108,36 +107,37 @@ void UsartInterruptionInit()
  * @param 	None
  * @retval None
  */
-char bluetooth_data = 0;
+
 void USART3_IRQHandler(void)
 {
-	if (USART_GetITStatus(USART3, USART_IT_RXNE) == SET)
+	if (USART_GetITStatus(USART3, USART_IT_RXNE) == RESET)
+		return;
+
+	char bluetooth_data = 0;
+	GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
+	bluetooth_data = USART3->DR;
+	if (bluetooth_data == 'w')
 	{
-
-		GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-		bluetooth_data = USART3->DR;
-		if (bluetooth_data == 'w')
-		{
-			DriveStraight();
-		}
-		else if (bluetooth_data == 'a')
-		{
-			TurnLeft();
-		}
-		else if (bluetooth_data == 'd')
-		{
-			TurnRight();
-		}
-
-		else if (bluetooth_data == 's')
-		{
-			StopVehicle();
-		}
-		else if (bluetooth_data == 'r')
-		{
-			DriveBack();
-		}
-
-		NVIC_ClearPendingIRQ(USART3_IRQn);
+		DriveStraight();
 	}
+	else if (bluetooth_data == 'a')
+	{
+		TurnLeft();
+	}
+	else if (bluetooth_data == 'd')
+	{
+		TurnRight();
+	}
+
+	else if (bluetooth_data == 's')
+	{
+		StopVehicle();
+	}
+	else if (bluetooth_data == 'r')
+	{
+		DriveBack();
+	}
+
+	NVIC_ClearPendingIRQ(USART3_IRQn);
+
 }
