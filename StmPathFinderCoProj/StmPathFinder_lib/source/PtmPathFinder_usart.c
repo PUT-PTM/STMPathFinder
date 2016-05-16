@@ -55,6 +55,7 @@ void UsartConfig(void)
 
 }
 
+
 /**
  * @brief  Sends single character
  * @note
@@ -131,6 +132,10 @@ void USART3_IRQHandler(void)
 		else if (bluetooth_data == 's')
 		{
 			StopVehicle();
+		}
+		else if (bluetooth_data == 'r')
+		{
+			DriveBack();
 		}
 
 		NVIC_ClearPendingIRQ(USART3_IRQn);

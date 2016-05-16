@@ -7,6 +7,8 @@ void EnginesInit(void);
 
 void DriveStraight(void);
 
+void DriveBack(void);
+
 void TurnLeft(void);
 
 void TurnRight(void);

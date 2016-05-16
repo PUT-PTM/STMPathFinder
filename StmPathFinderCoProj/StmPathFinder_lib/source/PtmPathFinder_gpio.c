@@ -72,6 +72,22 @@ void DriveStraight(void)
 }
 
 /**
+ * @brief  Setups the engines to drive back
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
+void DriveBack(void)
+{
+	GPIO_SetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_3);
+	GPIO_ResetBits(GPIOD, GPIO_Pin_2 | GPIO_Pin_4);
+
+	GPIO_SetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_11);
+	GPIO_ResetBits(GPIOE, GPIO_Pin_10 | GPIO_Pin_12);
+}
+
+
+/**
  * @brief  Setups the engines to turn left
  * @note	Configures the GPIO ports
  * @param 	None
@@ -163,10 +179,10 @@ void UserButtonInterruptInit(void)
  * @param 	None
  * @retval None
  */
-int mode = 0;
+
 void EXTI0_IRQHandler(void)
 {
-
+	int mode = 0;
 	if (EXTI_GetITStatus(EXTI_Line0) == RESET)
 		return;
 
