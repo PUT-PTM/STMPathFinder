@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "PtmPathFinderLib.h"
 
 /**
  * @brief  Configures the USART 3
@@ -8,31 +8,28 @@
  */
 void UsartConfig(void)
 {
-	//PC 10 USART_ TX
-	//PC11 USART _RX
-
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOC, ENABLE);
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_USART3, ENABLE);
 
-	//Konfiguracja lini Tx
+	/*Tx line config*/
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource10, GPIO_AF_USART3);
-	GPIO_InitTypeDef GPIO_Tx_InitStucture;
-	GPIO_Tx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Tx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Tx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_Tx_InitStucture.GPIO_Pin = GPIO_Pin_10;
-	GPIO_Tx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &GPIO_Tx_InitStucture);
+	GPIO_InitTypeDef GPIO_TxInitStucture;
+	GPIO_TxInitStucture.GPIO_OType = GPIO_OType_PP;
+	GPIO_TxInitStucture.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_TxInitStucture.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_TxInitStucture.GPIO_Pin = GPIO_Pin_10;
+	GPIO_TxInitStucture.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &GPIO_TxInitStucture);
 
-	//Konfiguracja lini Rx
+	/*Rx line config*/
 	GPIO_PinAFConfig(GPIOC, GPIO_PinSource11, GPIO_AF_USART3);
-	GPIO_InitTypeDef GPIO_Rx_InitStucture;
-	GPIO_Rx_InitStucture.GPIO_OType = GPIO_OType_PP;
-	GPIO_Rx_InitStucture.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_Rx_InitStucture.GPIO_Mode = GPIO_Mode_AF;
-	GPIO_Rx_InitStucture.GPIO_Pin = GPIO_Pin_11;
-	GPIO_Rx_InitStucture.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOC, &GPIO_Rx_InitStucture);
+	GPIO_InitTypeDef GPIO_RxInitStucture;
+	GPIO_RxInitStucture.GPIO_OType = GPIO_OType_PP;
+	GPIO_RxInitStucture.GPIO_PuPd = GPIO_PuPd_UP;
+	GPIO_RxInitStucture.GPIO_Mode = GPIO_Mode_AF;
+	GPIO_RxInitStucture.GPIO_Pin = GPIO_Pin_11;
+	GPIO_RxInitStucture.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &GPIO_RxInitStucture);
 
 	USART_InitTypeDef USART_InitStucture;
 
@@ -105,31 +102,39 @@ void USART3_IRQHandler(void)
 	if (USART_GetITStatus(USART3, USART_IT_RXNE) == RESET)
 		return;
 
-	char bluetooth_data = 0;
 	GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-	bluetooth_data = USART3->DR;
-	if (bluetooth_data == 'w')
+	HandleBluetoothRequest(USART3->DR);
+
+	NVIC_ClearPendingIRQ(USART3_IRQn);
+
+}
+
+/**
+ * @brief  Handles bluetooth request
+ * @param 	data received from bluetooth adapter
+ * @retval None
+ */
+void HandleBluetoothRequest(char bluetoothData)
+{
+	if (bluetoothData == 'w')
 	{
 		DriveStraight();
 	}
-	else if (bluetooth_data == 'a')
+	else if (bluetoothData == 'a')
 	{
 		TurnLeft();
 	}
-	else if (bluetooth_data == 'd')
+	else if (bluetoothData == 'd')
 	{
 		TurnRight();
 	}
 
-	else if (bluetooth_data == 's')
+	else if (bluetoothData == 's')
 	{
 		StopVehicle();
 	}
-	else if (bluetooth_data == 'r')
+	else if (bluetoothData == 'r')
 	{
 		DriveBack();
 	}
-
-	NVIC_ClearPendingIRQ(USART3_IRQn);
-
 }

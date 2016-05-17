@@ -1,5 +1,5 @@
-#ifndef _STDAFX_H
-#define _STDAFX_H
+#ifndef _PtmPathFinderLib_H
+#define _PtmPathFinderLib_H
 
 /**
  * @note	stm32f4xx libs includes
@@ -23,10 +23,4 @@
 #include "PtmPathFinder_usart.h"
 #include "PtmPathFinder_tim.h"
 
-/**
- * @note Constant values
- *
- */
-#define true 1;
-#define false 0;
 #endif

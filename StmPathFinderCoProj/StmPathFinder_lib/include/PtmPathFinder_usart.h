@@ -1,6 +1,6 @@
 #ifndef PtmPathFinder_Usart
 #define PtmPathFinder_Usart
-#include "stdafx.h"
+#include "PtmPathFinderLib.h"
 
 void UsartConfig(void);
 
@@ -11,5 +11,7 @@ uint16_t ReceiveChar(void);
 void UsartInterruptionInit();
 
 void USART3_IRQHandler(void);
+
+void HandleBluetoothRequest(char bluetoothData);
 
 #endif

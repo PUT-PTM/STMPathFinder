@@ -1,5 +1,4 @@
-#include "stdafx.h"
-
+#include "PtmPathFinderLib.h"
 /**
  * @note Global variables used in program
  */
@@ -17,12 +16,12 @@ float napiecie2 = 0;
 void Timer2Configuration(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE);
-	TIM_TimeBaseInitTypeDef str;
-	str.TIM_Period = 42000 - 1;
-	str.TIM_Prescaler = 200 - 1;
-	str.TIM_ClockDivision = TIM_CKD_DIV1;
-	str.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_TimeBaseInit(TIM2, &str);
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
+	TIM_TimeBaseInitStructure.TIM_Period = 42000 - 1;
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 200 - 1;
+	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM2, &TIM_TimeBaseInitStructure);
 	TIM_Cmd(TIM2, ENABLE);
 }
 
@@ -33,12 +32,12 @@ void Timer2Configuration(void)
  */
 void Timer2InterruptInit(void)
 {
-	NVIC_InitTypeDef str;
-	str.NVIC_IRQChannel = TIM2_IRQn;
-	str.NVIC_IRQChannelPreemptionPriority = 0x00;
-	str.NVIC_IRQChannelSubPriority = 0x00;
-	str.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&str);
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
 	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 	TIM_ITConfig(TIM2, TIM_IT_Update, ENABLE);
 }
@@ -78,12 +77,12 @@ void TIM2_IRQHandler(void)
 void Timer3Configuration(void)
 {
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
-	TIM_TimeBaseInitTypeDef TIM_3;
-	TIM_3.TIM_ClockDivision = TIM_CKD_DIV1;
-	TIM_3.TIM_CounterMode = TIM_CounterMode_Up;
-	TIM_3.TIM_Period = 42000 - 1;
-	TIM_3.TIM_Prescaler = 200 - 1;
-	TIM_TimeBaseInit(TIM3, &TIM_3);
+	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
+	TIM_TimeBaseInitStructure.TIM_Period = 42000 - 1;
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 200 - 1;
+	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
 	TIM_Cmd(TIM3, ENABLE);
 
 }
@@ -95,12 +94,12 @@ void Timer3Configuration(void)
 void Timer3InterruptInit(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
-	NVIC_InitTypeDef str;
-	str.NVIC_IRQChannel = TIM3_IRQn;
-	str.NVIC_IRQChannelPreemptionPriority = 0x00;
-	str.NVIC_IRQChannelSubPriority = 0x00;
-	str.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&str);
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel = TIM3_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
 
 	TIM_ITConfig(TIM3, TIM_IT_Update, ENABLE);
 	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
@@ -117,7 +116,6 @@ void TIM3_IRQHandler(void)
 	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
 	{
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
-
 		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
 	}
 }

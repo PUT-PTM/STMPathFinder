@@ -1,6 +1,4 @@
-#include "stdafx.h"
-
-void StartupConfiguration(void);
+#include "PtmPathFinderLib.h"
 
 int main(void)
 {

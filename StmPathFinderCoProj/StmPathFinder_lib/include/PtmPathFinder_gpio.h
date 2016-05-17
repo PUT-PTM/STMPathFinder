@@ -21,4 +21,8 @@ void UserButtonInterruptInit(void);
 
 void EXTI0_IRQHandler(void);
 
+void HandleUserButton(void);
+
+void DebounceDelay(void);
+
 #endif

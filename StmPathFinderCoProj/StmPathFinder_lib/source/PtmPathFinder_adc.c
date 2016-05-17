@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "PtmPathFinderLib.h"
 
 
 /**
@@ -12,30 +12,30 @@ void Adc1Init(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 
-	ADC_CommonInitTypeDef str;
-	str.ADC_Mode = ADC_Mode_Independent;
-	str.ADC_Prescaler = ADC_Prescaler_Div2;
-	str.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
-	str.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
-	ADC_CommonInit(&str);
+	ADC_CommonInitTypeDef ADC_CommonInitStructure;
+	ADC_CommonInitStructure.ADC_Mode = ADC_Mode_Independent;
+	ADC_CommonInitStructure.ADC_Prescaler = ADC_Prescaler_Div2;
+	ADC_CommonInitStructure.ADC_DMAAccessMode = ADC_DMAAccessMode_Disabled;
+	ADC_CommonInitStructure.ADC_TwoSamplingDelay = ADC_TwoSamplingDelay_5Cycles;
+	ADC_CommonInit(&ADC_CommonInitStructure);
 
-	ADC_InitTypeDef stru;
-	stru.ADC_Resolution = ADC_Resolution_12b;
-	stru.ADC_ScanConvMode = DISABLE;
-	stru.ADC_ContinuousConvMode = ENABLE;
-	stru.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1;
-	stru.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
-	stru.ADC_DataAlign = ADC_DataAlign_Right;
-	stru.ADC_NbrOfConversion = 1;
-	ADC_Init(ADC1, &stru);
+	ADC_InitTypeDef ADC_InitStructure;
+	ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+	ADC_InitStructure.ADC_ScanConvMode = DISABLE;
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC1;
+	ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+	ADC_InitStructure.ADC_NbrOfConversion = 1;
+	ADC_Init(ADC1, &ADC_InitStructure);
 	ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 1, ADC_SampleTime_84Cycles);
 	ADC_Cmd(ADC1, ENABLE);
 
-	GPIO_InitTypeDef struu;
-	struu.GPIO_Pin = GPIO_Pin_1;
-	struu.GPIO_Mode = GPIO_Mode_AN;
-	struu.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOA, &struu);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
 /**
@@ -49,22 +49,22 @@ void Adc2Init(void)
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC2, ENABLE);
 
-	ADC_InitTypeDef str;
-	str.ADC_Resolution = ADC_Resolution_12b;
-	str.ADC_ContinuousConvMode = ENABLE;
-	str.ADC_DataAlign = ADC_DataAlign_Right;
-	str.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC2;
-	str.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
-	str.ADC_NbrOfConversion = 1;
-	ADC_Init(ADC2, &str);
+	ADC_InitTypeDef ADC_InitStructure;
+	ADC_InitStructure.ADC_Resolution = ADC_Resolution_12b;
+	ADC_InitStructure.ADC_ContinuousConvMode = ENABLE;
+	ADC_InitStructure.ADC_DataAlign = ADC_DataAlign_Right;
+	ADC_InitStructure.ADC_ExternalTrigConv = ADC_ExternalTrigConv_T1_CC2;
+	ADC_InitStructure.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+	ADC_InitStructure.ADC_NbrOfConversion = 1;
+	ADC_Init(ADC2, &ADC_InitStructure);
 	ADC_RegularChannelConfig(ADC2, ADC_Channel_2, 1, ADC_SampleTime_84Cycles);
 	ADC_Cmd(ADC2, ENABLE);
 
-	GPIO_InitTypeDef stru;
-	stru.GPIO_Mode = GPIO_Mode_AN;
-	stru.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	stru.GPIO_Pin = GPIO_Pin_2;
-	GPIO_Init(GPIOA, &stru);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AN;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
 /**

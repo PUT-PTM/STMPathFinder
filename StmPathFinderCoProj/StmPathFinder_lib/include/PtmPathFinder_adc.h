@@ -1,6 +1,6 @@
 #ifndef PtmPathFinder_adc
 #define PtmPathFinder_adc
-#include "stdafx.h"
+#include "PtmPathFinderLib.h"
 
 void Adc1Init(void);
 
