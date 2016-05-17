@@ -1,12 +1,4 @@
-#include "PtmPathFinder_gpio.h"
-#include "PtmPathFinder_usart.h"
-#include "stm32f4xx_conf.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_tim.h"
-#include "stm32f4xx_syscfg.h"
-#include "stm32f4xx_exti.h"
-#include "misc.h"
+#include "stdafx.h"
 
 /**
  * @brief  Configures the GPIO ports
@@ -17,13 +9,13 @@
 void LedInit(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
-	GPIO_InitTypeDef GpioLedInit;
-	GpioLedInit.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
-	GpioLedInit.GPIO_Mode = GPIO_Mode_OUT;
-	GpioLedInit.GPIO_OType = GPIO_OType_PP;
-	GpioLedInit.GPIO_Speed = GPIO_Speed_100MHz;
-	GpioLedInit.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOD, &GpioLedInit);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
 }
 
 /**
@@ -36,23 +28,23 @@ void EnginesInit(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOD, ENABLE);
 
-	GPIO_InitTypeDef GpioLedInit;
-	GpioLedInit.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4;
-	GpioLedInit.GPIO_Mode = GPIO_Mode_OUT;
-	GpioLedInit.GPIO_OType = GPIO_OType_PP;
-	GpioLedInit.GPIO_Speed = GPIO_Speed_100MHz;
-	GpioLedInit.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOD, &GpioLedInit);
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOD, &GPIO_InitStructure);
 
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOE, ENABLE);
-	GPIO_InitTypeDef GpioLedInitStructure;
-	GpioLedInitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11
+	GPIO_InitTypeDef GPIO_InitStructure2;
+	GPIO_InitStructure2.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11
 			| GPIO_Pin_12;
-	GpioLedInitStructure.GPIO_Mode = GPIO_Mode_OUT;
-	GpioLedInitStructure.GPIO_OType = GPIO_OType_PP;
-	GpioLedInitStructure.GPIO_Speed = GPIO_Speed_100MHz;
-	GpioLedInitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_Init(GPIOE, &GpioLedInitStructure);
+	GPIO_InitStructure2.GPIO_Mode = GPIO_Mode_OUT;
+	GPIO_InitStructure2.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure2.GPIO_Speed = GPIO_Speed_100MHz;
+	GPIO_InitStructure2.GPIO_PuPd = GPIO_PuPd_NOPULL;
+	GPIO_Init(GPIOE, &GPIO_InitStructure2);
 }
 
 /**
@@ -137,14 +129,14 @@ void UserButtonInit(void)
 {
 	RCC_AHB1PeriphClockCmd(RCC_AHB1Periph_GPIOA, ENABLE);
 
-	GPIO_InitTypeDef str;
+	GPIO_InitTypeDef GPIO_InitStructure;
 
-	str.GPIO_Pin = GPIO_Pin_0;
-	str.GPIO_Mode = GPIO_Mode_IN;
-	str.GPIO_OType = GPIO_OType_PP;
-	str.GPIO_PuPd = GPIO_PuPd_DOWN;
-	str.GPIO_Speed = GPIO_Speed_50MHz;
-	GPIO_Init(GPIOA, &str);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN;
+	GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+	GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_DOWN;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
 
 /**
@@ -156,19 +148,19 @@ void UserButtonInit(void)
 void UserButtonInterruptInit(void)
 {
 
-	NVIC_InitTypeDef str;
-	str.NVIC_IRQChannel = EXTI0_IRQn;
-	str.NVIC_IRQChannelPreemptionPriority = 0;
-	str.NVIC_IRQChannelSubPriority = 0;
-	str.NVIC_IRQChannelCmd = ENABLE;
-	NVIC_Init(&str);
+	NVIC_InitTypeDef NVIC_InitStructure;
+	NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+	NVIC_Init(&NVIC_InitStructure);
 
-	EXTI_InitTypeDef structure;
-	structure.EXTI_Line = EXTI_Line0;
-	structure.EXTI_Mode = EXTI_Mode_Interrupt;
-	structure.EXTI_Trigger = EXTI_Trigger_Rising;
-	structure.EXTI_LineCmd = ENABLE;
-	EXTI_Init(&structure);
+	EXTI_InitTypeDef EXTI_InitStructure;
+	EXTI_InitStructure.EXTI_Line = EXTI_Line0;
+	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
+	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+	EXTI_Init(&EXTI_InitStructure);
 	SYSCFG_EXTILineConfig(GPIOA, EXTI_PinSource0);
 
 }
@@ -211,8 +203,8 @@ void EXTI0_IRQHandler(void)
  */
 void Delay(void)
 {
-	int delay_v = 0;
-	for (delay_v = 0; delay_v < 400000; delay_v++)
+	int i = 0;
+	for (i = 0; i < 400000; i++)
 		;
 }
 

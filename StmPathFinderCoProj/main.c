@@ -1,12 +1,21 @@
-#include "PtmPathFinder_gpio.h"
-#include "PtmPathFinder_adc.h"
-#include "PtmPathFinder_usart.h"
-#include "PtmPathFinder_tim.h"
+#include "stdafx.h"
+
+void StartupConfiguration(void);
 
 int main(void)
 {
 	SystemInit();
+	StartupConfiguration();
 
+	while (1)
+	{
+
+	}
+
+}
+
+void StartupConfiguration(void)
+{
 	LedInit();
 	EnginesInit();
 	UserButtonInit();
@@ -17,11 +26,5 @@ int main(void)
 	Timer2InterruptInit();
 	UsartConfig();
 	UsartInterruptionInit();
-
-	while (1)
-	{
-
-	}
-
 }
 

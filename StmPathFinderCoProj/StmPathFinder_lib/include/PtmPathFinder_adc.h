@@ -1,7 +1,6 @@
 #ifndef PtmPathFinder_adc
 #define PtmPathFinder_adc
-#include "misc.h"
-#include "stm32f4xx_syscfg.h"
+#include "stdafx.h"
 
 void Adc1Init(void);
 

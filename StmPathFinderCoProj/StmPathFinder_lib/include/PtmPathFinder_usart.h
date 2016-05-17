@@ -1,7 +1,6 @@
 #ifndef PtmPathFinder_Usart
 #define PtmPathFinder_Usart
-#include "misc.h"
-#include "stm32f4xx_syscfg.h"
+#include "stdafx.h"
 
 void UsartConfig(void);
 

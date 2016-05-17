@@ -1,19 +1,7 @@
-#include "PtmPathFinder_gpio.h"
-#include "PtmPathFinder_usart.h"
-#include "PtmPathFinder_adc.h"
-#include "PtmPathFinder_tim.h"
-#include "stm32f4xx_conf.h"
-#include "stm32f4xx_gpio.h"
-#include "stm32f4xx_rcc.h"
-#include "stm32f4xx_tim.h"
-#include "stm32f4xx_syscfg.h"
-#include "stm32f4xx_exti.h"
-#include "misc.h"
+#include "stdafx.h"
+
 /**
- * @brief  Global variables
- * @note	Global variables used to read voltage from ADC
- * @param 	None
- * @retval None
+ * @note Global variables used in program
  */
 float Adc1_Result = 0;
 float Adc2_Result = 0;
