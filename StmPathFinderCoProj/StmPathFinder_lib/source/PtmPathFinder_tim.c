@@ -2,10 +2,10 @@
 /**
  * @note Global variables used in program
  */
-float Adc1_Result = 0;
-float Adc2_Result = 0;
-float napiecie1 = 0;
-float napiecie2 = 0;
+float ResultFromFirstAdc = 0;
+float ResultFromSecondAdc = 0;
+float voltageFromFirstAdc = 0;
+float voltageFromSecondAdc = 0;
 
 /**
  * @brief  Configures the Tim2 on 10 Hz
@@ -53,19 +53,24 @@ void TIM2_IRQHandler(void)
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == RESET)
 		return;
 
-	Adc1_Result = GetConversionValueFromAdc(ADC1);
-	Adc2_Result = GetConversionValueFromAdc(ADC2);
-	napiecie1 = Adc1_Result * 3 / 4095;
-	napiecie2 = Adc2_Result * 3 / 4095;
+	ResultFromFirstAdc = GetConversionValueFromAdc(ADC1);
+	ResultFromSecondAdc = GetConversionValueFromAdc(ADC2);
+	HandleAdcResult(ResultFromFirstAdc,ResultFromSecondAdc);
 
-	if (napiecie1 > 2 || napiecie2 > 2)
+	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
+
+}
+
+void HandleAdcResult(float firstAdcResult, float secondAdcResult)
+{
+	voltageFromFirstAdc = ResultFromFirstAdc * 3 / 4095;
+	voltageFromSecondAdc = ResultFromSecondAdc * 3 / 4095;
+
+	if (voltageFromFirstAdc > 2 || voltageFromSecondAdc > 2)
 	{
 		StopVehicle();
 		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
 	}
-
-	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
-
 }
 
 /**

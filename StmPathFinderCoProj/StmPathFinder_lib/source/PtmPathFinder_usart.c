@@ -58,6 +58,21 @@ void SendChar(char character)
 }
 
 /**
+ * @brief  Sends string
+ * @note
+ * @param 	None
+ * @retval None
+ */
+
+void SendString(char* s)
+{
+	while (*s)
+	{
+		SendChar(*s++);
+	}
+}
+
+/**
  * @brief  Receives single character
  * @note
  * @param 	None
@@ -137,4 +152,5 @@ void HandleBluetoothRequest(char bluetoothData)
 	{
 		DriveBack();
 	}
+
 }

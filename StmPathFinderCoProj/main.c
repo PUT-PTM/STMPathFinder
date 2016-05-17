@@ -26,3 +26,6 @@ void StartupConfiguration(void)
 	UsartInterruptionInit();
 }
 
+
+
+

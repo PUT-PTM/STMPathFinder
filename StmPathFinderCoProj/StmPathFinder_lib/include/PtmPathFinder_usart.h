@@ -6,6 +6,8 @@ void UsartConfig(void);
 
 void SendChar(char character);
 
+void SendString(char* s);
+
 uint16_t ReceiveChar(void);
 
 void UsartInterruptionInit();
