@@ -1,6 +1,7 @@
 #ifndef PtmPathFinder_tim
 #define PtmPathFinder_tim
 
+
 void Timer2Configuration(void);
 
 void Timer2InterruptInit(void);

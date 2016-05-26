@@ -183,9 +183,22 @@ void EXTI0_IRQHandler(void)
  * @param 	None
  * @retval None
  */
+int mode = 0;
 void HandleUserButton(void)
 {
-		DriveStraight();
+	mode++;
+	if (mode % 2 == 1)
+	{
+		TIM_Cmd(TIM2, ENABLE);
+		GPIO_SetBits(GPIOD, GPIO_Pin_15);
+	}
+	else
+	{
+		TIM_Cmd(TIM2, DISABLE);
+		GPIO_ResetBits(GPIOD, GPIO_Pin_15);
+		StopVehicle();
+	}
+
 }
 
 /**
@@ -199,4 +212,29 @@ void DebounceDelay(void)
 	int i = 0;
 	for (i = 0; i < 400000; i++)
 		;
+}
+
+/**
+ * @brief  Setups the engines to drive back
+ * @note	Configures the GPIO ports
+ * @param 	None
+ * @retval None
+ */
+
+volatile uint32_t timer_ms = 0;
+
+void SysTick_Handler()
+{
+	if (timer_ms)
+	{
+		timer_ms--;
+	}
+}
+
+void Sleep(int time)
+{
+	timer_ms = time;
+	while (timer_ms)
+	{
+	};
 }
