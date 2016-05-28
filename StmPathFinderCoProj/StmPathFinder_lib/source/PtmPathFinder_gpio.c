@@ -1,5 +1,7 @@
 #include "PtmPathFinderLib.h"
 
+extern volatile int timerCount;
+
 /**
  * @brief  Configures the GPIO ports
  * @note	Configures the GPIO D port and sets Pin12..Pin15
@@ -88,11 +90,17 @@ void TurnLeft(void)
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
 }
 
-void TurnLeftTest()
+void TurnLeftUsingTimer()
 {
+	TIM_Cmd(TIM2, ENABLE);
 	TurnLeft();
-	Sleep(1400);
+	while (timerCount < 30)
+	{
+
+	}
 	StopVehicle();
+	TIM_Cmd(TIM2, DISABLE);
+	timerCount = 0;
 }
 
 /**
@@ -109,11 +117,17 @@ void TurnRight(void)
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
 }
 
-void TurnRightTest()
+void TurnRightUsingTimer()
 {
+	TIM_Cmd(TIM2, ENABLE);
 	TurnRight();
-	Sleep(1400);
+	while (timerCount < 30)
+	{
+
+	}
 	StopVehicle();
+	TIM_Cmd(TIM2, DISABLE);
+	timerCount = 0;
 }
 /**
  * @brief  Setups the engines to stop vehicle
@@ -125,6 +139,19 @@ void StopVehicle(void)
 {
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
+}
+
+void StopVehicleTest(void)
+{
+	TIM_Cmd(TIM2, ENABLE);
+	StopVehicle();
+	while (timerCount < 30)
+	{
+
+	}
+	StopVehicle();
+	TIM_Cmd(TIM2, DISABLE);
+	timerCount = 0;
 }
 
 /**
@@ -204,13 +231,10 @@ void HandleUserButton(void)
 	{
 		GPIO_SetBits(GPIOD, GPIO_Pin_15);
 		TIM_Cmd(TIM3, ENABLE);
-		TIM_Cmd(TIM2, ENABLE);
-
 	}
 	else
 	{
 		GPIO_ResetBits(GPIOD, GPIO_Pin_15);
-		TIM_Cmd(TIM2, DISABLE);
 		TIM_Cmd(TIM3, DISABLE);
 		StopVehicle();
 	}
