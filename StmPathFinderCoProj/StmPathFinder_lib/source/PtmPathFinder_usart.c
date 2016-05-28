@@ -1,5 +1,7 @@
 #include "PtmPathFinderLib.h"
 
+extern volatile int mode;
+
 /**
  * @brief  Configures the USART 3
  * @note	Configures the USART 3 on pin PC10 for Tx, and PC11 for Rx
@@ -112,13 +114,16 @@ void UsartInterruptionInit()
  * @retval None
  */
 
+char bluetoothData;
 void USART3_IRQHandler(void)
 {
 	if (USART_GetITStatus(USART3, USART_IT_RXNE) == RESET)
 		return;
 
 	GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-	HandleBluetoothRequest(USART3->DR);
+
+	bluetoothData = USART3->DR;
+	HandleBluetoothRequest(bluetoothData);
 
 	NVIC_ClearPendingIRQ(USART3_IRQn);
 

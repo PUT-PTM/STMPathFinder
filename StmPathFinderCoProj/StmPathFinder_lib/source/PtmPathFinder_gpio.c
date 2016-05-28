@@ -88,6 +88,13 @@ void TurnLeft(void)
 	GPIO_ResetBits(GPIOE, GPIO_Pin_9 | GPIO_Pin_10 | GPIO_Pin_11 | GPIO_Pin_12);
 }
 
+void TurnLeftTest()
+{
+	TurnLeft();
+	Sleep(1400);
+	StopVehicle();
+}
+
 /**
  * @brief  Setups the engines to turn right
  * @note	Configures the GPIO ports
@@ -102,6 +109,12 @@ void TurnRight(void)
 	GPIO_ResetBits(GPIOD, GPIO_Pin_1 | GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4);
 }
 
+void TurnRightTest()
+{
+	TurnRight();
+	Sleep(1400);
+	StopVehicle();
+}
 /**
  * @brief  Setups the engines to stop vehicle
  * @note	Configures the GPIO ports
@@ -189,13 +202,16 @@ void HandleUserButton(void)
 	mode++;
 	if (mode % 2 == 1)
 	{
-		TIM_Cmd(TIM2, ENABLE);
 		GPIO_SetBits(GPIOD, GPIO_Pin_15);
+		TIM_Cmd(TIM3, ENABLE);
+		TIM_Cmd(TIM2, ENABLE);
+
 	}
 	else
 	{
-		TIM_Cmd(TIM2, DISABLE);
 		GPIO_ResetBits(GPIOD, GPIO_Pin_15);
+		TIM_Cmd(TIM2, DISABLE);
+		TIM_Cmd(TIM3, DISABLE);
 		StopVehicle();
 	}
 
@@ -214,27 +230,3 @@ void DebounceDelay(void)
 		;
 }
 
-/**
- * @brief  Setups the engines to drive back
- * @note	Configures the GPIO ports
- * @param 	None
- * @retval None
- */
-
-volatile uint32_t timer_ms = 0;
-
-void SysTick_Handler()
-{
-	if (timer_ms)
-	{
-		timer_ms--;
-	}
-}
-
-void Sleep(int time)
-{
-	timer_ms = time;
-	while (timer_ms)
-	{
-	};
-}

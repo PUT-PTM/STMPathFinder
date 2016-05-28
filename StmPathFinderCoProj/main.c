@@ -1,66 +1,71 @@
 #include "PtmPathFinderLib.h"
 
-
+extern volatile float resultFromFirstAdc;
+extern volatile float resultFromSecondAdc;
+extern volatile float voltageFromFirstAdc;
+extern volatile float voltageFromSecondAdc;
+extern volatile int mode;
 
 int main(void)
 {
 	SystemInit();
 	StartupConfiguration();
 
-	float ResultAdc = 0;
-	float Result2 = 0;
-	float voltage1 = 0;
-	float voltage2 = 0;
-
 	while (1)
 	{
-		Sleep(200);
-		GPIO_ToggleBits(GPIOD,
-				GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
-
-		ResultAdc = GetConversionValueFromAdc(ADC1);
-		Result2 = GetConversionValueFromAdc(ADC2);
-
-		voltage1 = ResultAdc * 3 / 4095;
-		voltage2 = Result2 * 3 / 4095;
-
-		if (voltage1 > 2 || voltage2 > 2)
-			GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-
-		if (voltage1 < 2 && voltage2 < 2)
-			DriveStraight();
-		else if (voltage1 > 2 && voltage2 < 2)
+		if (mode % 2 == 1)
 		{
-			TurnRight();
-			Sleep(500);
+			resultFromFirstAdc = GetConversionValueFromAdc(ADC1);
+			resultFromSecondAdc = GetConversionValueFromAdc(ADC2);
+			voltageFromFirstAdc = resultFromFirstAdc * 3 / 4095;
+			voltageFromSecondAdc = resultFromSecondAdc * 3 / 4095;
+
+			//Test - jesli jest przeszkoda - mrugaj pomaranczowa dioda
+			if (voltageFromFirstAdc > 2 || voltageFromSecondAdc > 2)
+				GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
+
+			if (voltageFromFirstAdc < 2 && voltageFromSecondAdc < 2)
+			{
+				DriveStraight();
+			}
+
+			//Przeszkoda z lewej strony
+			else if (voltageFromFirstAdc > 2 && voltageFromSecondAdc < 2)
+			{
+				GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
+				while (voltageFromFirstAdc > 1.7)
+					TurnRight();
+			}
+			//Przeszkoda z prawej strony
+			else if (voltageFromFirstAdc < 2 && voltageFromSecondAdc > 2)
+			{
+				GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
+				while (voltageFromSecondAdc > 1.7)
+					TurnLeft();
+			}
+			else
+			{
+				StopVehicle();
+			}
 		}
 
-		else if (voltage1 < 2 && voltage2 > 2)
-		{
-			TurnLeft();
-			Sleep(500);
-		}
 
-		else
-		{
-			DriveBack();
-			Sleep(500);
-		}
 	}
+
 }
 
 void StartupConfiguration(void)
 {
-	SysTick_Config(SystemCoreClock / 1000);
 	LedInit();
 	EnginesInit();
 	UserButtonInit();
 	UserButtonInterruptInit();
 	Adc1Init();
 	Adc2Init();
-	Timer2Configuration();
-	Timer2InterruptInit();
+	//Timer2Configuration();
+	//Timer2InterruptInit();
+	Timer3Configuration();
+	Timer3InterruptInit();
 	UsartConfig();
 	UsartInterruptionInit();
 }
-

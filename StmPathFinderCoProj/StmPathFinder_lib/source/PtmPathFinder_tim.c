@@ -2,10 +2,10 @@
 /**
  * @note Global variables used in program
  */
-float ResultAdc = 0;
-float Result2 = 0;
-float voltage1 = 0;
-float voltage2 = 0;
+volatile float resultFromFirstAdc = 0;
+volatile float resultFromSecondAdc = 0;
+volatile float voltageFromFirstAdc = 0;
+volatile float voltageFromSecondAdc = 0;
 
 /**
  * @brief  Configures the Tim2 on 10 Hz
@@ -34,8 +34,8 @@ void Timer2InterruptInit(void)
 {
 	NVIC_InitTypeDef NVIC_InitStructure;
 	NVIC_InitStructure.NVIC_IRQChannel = TIM2_IRQn;
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;
+	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x05;
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x05;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
@@ -48,36 +48,15 @@ void Timer2InterruptInit(void)
  * @param 	None
  * @retval None
  */
+
 void TIM2_IRQHandler(void)
 {
 	if (TIM_GetITStatus(TIM2, TIM_IT_Update) == RESET)
 		return;
 
-	ResultAdc = GetConversionValueFromAdc(ADC1);
-	Result2 = GetConversionValueFromAdc(ADC2);
-
-	HandleAdcResult(ResultAdc, Result2);
-
 	TIM_ClearITPendingBit(TIM2, TIM_IT_Update);
 }
 
-void HandleAdcResult(float firstAdcResult, float secondAdcResult)
-{
-	voltage1 = ResultAdc * 3 / 4095;
-	voltage2 = Result2 * 3 / 4095;
-
-	if (voltage1 > 2 || voltage2 > 2)
-		GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-
-	if (voltage1 < 2 && voltage2 < 2)
-		DriveStraight();
-	else if (voltage1 > 2 && voltage2 < 2)
-		TurnRight();
-	else if (voltage1 < 2 && voltage2 > 2)
-		TurnLeft();
-	else
-		DriveBack();
-}
 /**
  * @brief  Configures the Tim3 on 10 Hz
  * @note	Configures Tim3 with Period 42000 and prescaler 200
@@ -89,11 +68,11 @@ void Timer3Configuration(void)
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3, ENABLE);
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure;
 	TIM_TimeBaseInitStructure.TIM_Period = 42000 - 1;
-	TIM_TimeBaseInitStructure.TIM_Prescaler = 200 - 1;
+	TIM_TimeBaseInitStructure.TIM_Prescaler = 100 - 1;
 	TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
 	TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM3, &TIM_TimeBaseInitStructure);
-	TIM_Cmd(TIM3, ENABLE);
+	TIM_Cmd(TIM3, DISABLE);
 
 }
 /**
@@ -123,10 +102,16 @@ void Timer3InterruptInit(void)
  */
 void TIM3_IRQHandler(void)
 {
-	if (TIM_GetITStatus(TIM3, TIM_IT_Update) != RESET)
-	{
-		GPIO_ToggleBits(GPIOD, GPIO_Pin_13);
-		TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
-	}
+	if (TIM_GetITStatus(TIM3, TIM_IT_Update) == RESET)
+		return;
+
+
+	resultFromFirstAdc = GetConversionValueFromAdc(ADC1);
+	resultFromSecondAdc = GetConversionValueFromAdc(ADC2);
+	voltageFromFirstAdc = resultFromFirstAdc * 3 / 4095;
+	voltageFromSecondAdc = resultFromSecondAdc * 3 / 4095;
+
+	TIM_ClearITPendingBit(TIM3, TIM_IT_Update);
+
 }
 
