@@ -1,8 +1,8 @@
 package com.example.szymon.myapplication;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
@@ -14,24 +14,31 @@ import com.example.szymon.myapplication.mapping.MoveData;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String ADAPTER_NAME = "ADAPTER";
-    private final int[] movingButton = {
+    private final List<Integer> movingButton = Arrays.asList(
             R.id.buttonUp,
             R.id.buttonDown,
             R.id.buttonLeft,
             R.id.buttonRight
-    };
+    );
+
+    private List<String> messages = Arrays.asList(
+            "w",
+            "r",
+            "a",
+            "d"
+    );
 
     private BluetoothManager bluetoothManager;
     private TextView textView = null;
     private OutputStream bluetoothOutputStream = null;
-    private Map<Button, String> moveButtons = new HashMap<>();
     private Switch registerSwitch;
     private MappingService mappingService = new MappingService();
 
@@ -47,31 +54,20 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.textView);
         registerSwitch = (Switch) findViewById(R.id.registering);
 
-        activateBluetooth();
-
         initMovingButtons();
         initExploringButton();
         initClearButton();
+
+        activateBluetooth();
     }
 
     private void initMovingButtons() {
-        for (int buttonId : movingButton) {
-            Button tmpButton = (Button) findViewById(buttonId);
+        for (int i = 0; i < messages.size(); i++) {
+            Button tmpButton = (Button) findViewById(movingButton.get(i));
             if (tmpButton != null) {
-                tmpButton.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if (event.getAction() == MotionEvent.ACTION_DOWN || event.getAction() == MotionEvent.ACTION_UP) {
-                            Button button = (Button) v;
-                            String key = button.getText().toString();
-                            sendDataViaBluetooth(key);
-                            registerIfEnabled(key);
-                        }
-                        return true;
-                    }
-                });
+                tmpButton.setOnTouchListener(new MovingEvent(tmpButton, messages.get(i), this));
+                tmpButton.setText(messages.get(i));
             }
-            moveButtons.put(tmpButton, tmpButton.getText().toString());
         }
     }
 
@@ -107,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         bluetoothOutputStream = bluetoothManager.getOutputStream();
     }
 
-    private void registerIfEnabled(String key) {
+    void registerIfEnabled(String key) {
         if (registerSwitch.isChecked()) {
             mappingService.addData(key);
         }
@@ -115,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void runFromHistory() {
         if (mappingService.getMoveHistory().size() != 0) {
-            enableUi(false);
+            disableUi();
             Iterator<MoveData> iterator = mappingService.getMoveHistory().iterator();
             MoveData firstMeasure = iterator.next();
             long lastTimestamp = firstMeasure.getTimestamp();
@@ -132,22 +128,39 @@ public class MainActivity extends AppCompatActivity {
                 lastTimestamp = measure.getTimestamp();
             }
             mappingService.clearData();
-            enableUi(true);
+            enableUi();
         }
     }
 
-    private void enableUi(Boolean enabled) {
-        Button button;
+    private void enableUi() {
         for (int buttonId : movingButton) {
-            button = (Button) findViewById(buttonId);
-            button.setEnabled(enabled);
+            enableButton((Button) findViewById(buttonId));
         }
-        ((Button) findViewById(R.id.buttonExploring)).setEnabled(enabled);
-        ((Button) findViewById(R.id.buttonClear)).setEnabled(enabled);
-        ((Switch) findViewById(R.id.registering)).setEnabled(enabled);
+        enableButton((Button) findViewById(R.id.buttonExploring));
+        enableButton((Button) findViewById(R.id.buttonClear));
+        enableButton((Switch) findViewById(R.id.registering));
     }
 
-    private void sendDataViaBluetooth(String message) {
+    private void disableUi() {
+        for (int buttonId : movingButton) {
+            enableButton((Button) findViewById(buttonId));
+        }
+        disableButton((Button) findViewById(R.id.buttonExploring));
+        disableButton((Button) findViewById(R.id.buttonClear));
+        disableButton((Switch) findViewById(R.id.registering));
+    }
+
+    private void enableButton(Button button) {
+        button.setEnabled(true);
+        button.setBackgroundColor(Color.WHITE);
+    }
+
+    private void disableButton(Button button) {
+        button.setEnabled(false);
+        button.setBackgroundColor(Color.GRAY);
+    }
+
+    void sendDataViaBluetooth(String message) {
         try {
             bluetoothOutputStream.write(message.getBytes());
             bluetoothOutputStream.write("\n".getBytes());

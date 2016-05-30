@@ -21,7 +21,6 @@ public class BluetoothManager {
     private BluetoothSocket bluetoothSocket = null;
     private OutputStream outputStream;
 
-//    public final UUID MY_UUID = UUID.fromString("00000000-0000-1000-8000-00805F9B34FB");
     public final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public final String ROBOT_BLUETOOTH_NAME = "HC-06"; //HC-06, "HUAWEI U8815"
 

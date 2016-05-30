@@ -38,7 +38,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="s"
+        android:text="r"
         android:id="@+id/buttonDown"
         android:layout_below="@+id/buttonUp"
         android:layout_centerHorizontal="true" />
