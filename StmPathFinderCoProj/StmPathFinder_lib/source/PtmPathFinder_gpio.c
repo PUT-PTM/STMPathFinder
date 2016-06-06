@@ -254,3 +254,21 @@ void DebounceDelay(void)
 		;
 }
 
+
+volatile uint32_t timer_ms = 0;
+
+void SysTick_Handler()
+{
+	if (timer_ms)
+	{
+		timer_ms--;
+	}
+}
+
+void Sleep(int time)
+{
+	timer_ms = time;
+	while (timer_ms)
+	{
+	};
+}

@@ -6,15 +6,11 @@ extern volatile float voltageFromFirstAdc;
 extern volatile float voltageFromSecondAdc;
 extern volatile int mode;
 
-/*
- while (1)
- {
- StopVehicleTest();
- TurnRightTest();
- }
- * */
+float voltage1 =0;
+float voltage2 =0;
+float ResultAdc =0;
+float Result2 =0;
 
-int czyPrzeszkoda = 0;
 int main(void)
 {
 	SystemInit();
@@ -28,53 +24,33 @@ int main(void)
 			StopVehicle();
 		}
 
-		if (voltageFromFirstAdc < 1.5 && voltageFromSecondAdc < 1.5)
+		Sleep(200);
+
+
+		ResultAdc = GetConversionValueFromAdc(ADC1);
+		Result2 = GetConversionValueFromAdc(ADC2);
+
+		voltage1 = ResultAdc * 3 / 4095;
+		voltage2 = Result2 * 3 / 4095;
+
+		if (voltage1 < 2 && voltage2 < 2)
 			DriveStraight();
-		else
+		else if (voltage1 > 2 && voltage2 < 2)
 		{
-			TurnRightUsingTimer();
+			TurnRight();
+			Sleep(500);
 		}
-	}
-}
 
-void test()
-{
-	while (1)
-	{
+		else if (voltage1 < 2 && voltage2 > 2)
+		{
+			TurnLeft();
+			Sleep(500);
+		}
 
-		if (voltageFromFirstAdc < 1.5 && voltageFromSecondAdc < 1.5)
-			DriveStraight();
 		else
 		{
-			if (voltageFromFirstAdc > 1.5 && voltageFromSecondAdc < 1.5)
-			{
-				GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-				while (voltageFromFirstAdc > 2)
-				{
-					TurnRight();
-				}
-
-				GPIO_ToggleBits(GPIOD, GPIO_Pin_12);
-			}
-			//Przeszkoda z prawej strony
-			else if (voltageFromFirstAdc < 1.5 && voltageFromSecondAdc > 1.5)
-			{
-				GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-				while (voltageFromSecondAdc > 2)
-				{
-					TurnLeft();
-				}
-				GPIO_ToggleBits(GPIOD, GPIO_Pin_14);
-			}
-
-			else if (voltageFromFirstAdc > 1.8 && voltageFromSecondAdc > 1.8)
-			{
-				while (voltageFromFirstAdc > 2 || voltageFromSecondAdc > 2)
-				{
-					DriveBack();
-				}
-			}
-
+			DriveBack();
+			Sleep(500);
 		}
 
 	}
@@ -82,6 +58,7 @@ void test()
 
 void StartupConfiguration(void)
 {
+	SysTick_Config(SystemCoreClock / 1000);
 	LedInit();
 	EnginesInit();
 	UserButtonInit();
