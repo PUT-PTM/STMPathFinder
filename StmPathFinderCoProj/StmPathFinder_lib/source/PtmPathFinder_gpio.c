@@ -230,12 +230,10 @@ void HandleUserButton(void)
 	if (mode % 2 == 1)
 	{
 		GPIO_SetBits(GPIOD, GPIO_Pin_15);
-		TIM_Cmd(TIM3, ENABLE);
 	}
 	else
 	{
 		GPIO_ResetBits(GPIOD, GPIO_Pin_15);
-		TIM_Cmd(TIM3, DISABLE);
 		StopVehicle();
 	}
 

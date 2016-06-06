@@ -6,10 +6,10 @@ extern volatile float voltageFromFirstAdc;
 extern volatile float voltageFromSecondAdc;
 extern volatile int mode;
 
-float voltage1 =0;
-float voltage2 =0;
-float ResultAdc =0;
-float Result2 =0;
+float voltage1 = 0;
+float voltage2 = 0;
+float ResultAdc = 0;
+float Result2 = 0;
 
 int main(void)
 {
@@ -65,10 +65,10 @@ void StartupConfiguration(void)
 	UserButtonInterruptInit();
 	Adc1Init();
 	Adc2Init();
-	Timer2Configuration();
-	Timer2InterruptInit();
-	Timer3Configuration();
-	Timer3InterruptInit();
+	//Timer2Configuration();
+	//Timer2InterruptInit();
+	//Timer3Configuration();
+	//Timer3InterruptInit();
 	UsartConfig();
 	UsartInterruptionInit();
 }
