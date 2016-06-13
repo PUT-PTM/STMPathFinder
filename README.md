@@ -21,6 +21,7 @@ HG7881 (L9110) Dual Channel Motor Driver Module
 ### How to run
 1. Download latest release pack
 2. Unzip file
+    
     2.1 Android
         1. Copy app-debug.apk to your android phone
         2. Click on it to install
