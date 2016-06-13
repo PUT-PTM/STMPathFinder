@@ -19,7 +19,13 @@ HG7881 (L9110) Dual Channel Motor Driver Module
 
 
 ### How to run
-Coming soon
+1. Download latest release pack
+2. Unzip file
+    2.1 Android
+        1. Copy app-debug.apk to your android phone
+        2. Click on it to install
+        3. To start application make sure, you have activated your bluetooth adapter.
+        4. After you'll connect to PathFinder robot (bluetooth adapter light stops blink) you can start control your robot.
 
 ### How to compile
 Coming soon
